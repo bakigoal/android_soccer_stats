@@ -18,18 +18,20 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
     private val database = getDatabase(application)
     private val countriesRepository = CountriesRepository(database)
 
-    private val _show_error = MutableLiveData("")
+    private val _showError = MutableLiveData("")
 
     val countries: LiveData<List<Country>> = countriesRepository.countries
     val showError: LiveData<String>
-        get() = _show_error
+        get() = _showError
 
     init {
         viewModelScope.launch {
             try {
-                countriesRepository.refreshCountries()
+                if (countries.value?.size == 0) {
+                    countriesRepository.refreshCountries()
+                }
             } catch (error: Throwable) {
-                _show_error.value = "No internet..."
+                _showError.value = "No internet..."
             }
         }
     }
@@ -40,7 +42,7 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun doneShowError () {
-        _show_error.value = ""
+        _showError.value = ""
     }
 
     /**
