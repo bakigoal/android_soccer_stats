@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.bakigoal.soccerstats.database.CountriesDatabase
-import com.bakigoal.soccerstats.repository.CountriesRepository
+import com.bakigoal.soccerstats.repository.LeaguesRepository
 import retrofit2.HttpException
 
 class RefreshDataWork(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
@@ -15,10 +15,10 @@ class RefreshDataWork(ctx: Context, params: WorkerParameters) : CoroutineWorker(
 
     override suspend fun doWork(): Result {
         val database = CountriesDatabase.getDatabase(applicationContext)
-        val repository = CountriesRepository(database)
+        val repository = LeaguesRepository(database)
 
         return try {
-            repository.refreshCountries()
+            repository.refreshLeagues()
             Result.success()
         } catch (e: HttpException) {
             // retry this Job in the future

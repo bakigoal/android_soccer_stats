@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.bakigoal.soccerstats.database.dao.CountriesDao
-import com.bakigoal.soccerstats.database.entity.CountryEntity
+import com.bakigoal.soccerstats.database.dao.LeaguesDao
+import com.bakigoal.soccerstats.database.entity.LeagueEntity
 
-@Database(entities = [CountryEntity::class], version = 2)
+@Database(entities = [LeagueEntity::class], version = 4)
 abstract class CountriesDatabase : RoomDatabase() {
-    abstract val countriesDao: CountriesDao
+    abstract val leaguesDao: LeaguesDao
 
     companion object {
 

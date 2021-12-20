@@ -25,7 +25,7 @@ class SoccerStatsAdapter(private val callback: CountryClick) : RecyclerView.Adap
         }
     }
 
-    var countries: List<Country> = emptyList()
+    var countries: List<Country?> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

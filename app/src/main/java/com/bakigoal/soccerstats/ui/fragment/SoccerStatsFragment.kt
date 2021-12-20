@@ -78,9 +78,9 @@ class SoccerStatsFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.countries.observe(viewLifecycleOwner, { videos ->
-            videos?.apply {
-                soccerStatsAdapterAdapter.countries = videos
+        viewModel.countries.observe(viewLifecycleOwner, { countries ->
+            countries?.apply {
+                soccerStatsAdapterAdapter.countries = countries
             }
         })
 

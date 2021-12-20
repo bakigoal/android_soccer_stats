@@ -1,10 +1,11 @@
 package com.bakigoal.soccerstats.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.bakigoal.soccerstats.database.CountriesDatabase.Companion.getDatabase
 import com.bakigoal.soccerstats.domain.Country
-import com.bakigoal.soccerstats.repository.CountriesRepository
+import com.bakigoal.soccerstats.repository.LeaguesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -16,22 +17,26 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val database = getDatabase(application)
-    private val countriesRepository = CountriesRepository(database)
+    private val leaguesRepository = LeaguesRepository(database)
 
     private val _showError = MutableLiveData("")
 
-    val countries: LiveData<List<Country>> = countriesRepository.countries
+    val countries: LiveData<List<Country?>> =
+        Transformations.map(leaguesRepository.leagues) { list ->
+            list.map { it.country }.toList()
+        }
     val showError: LiveData<String>
         get() = _showError
 
     init {
         viewModelScope.launch {
             try {
-                if (countries.value?.size == 0) {
-                    countriesRepository.refreshCountries()
+                if (countries.value == null || countries.value!!.isEmpty()) {
+                    leaguesRepository.refreshLeagues()
                 }
             } catch (error: Throwable) {
-                _showError.value = "No internet..."
+                _showError.value = "No internet... $error"
+                Log.e(javaClass.simpleName, error.message.toString())
             }
         }
     }
@@ -41,7 +46,7 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
         viewModelJob.cancel()
     }
 
-    fun doneShowError () {
+    fun doneShowError() {
         _showError.value = ""
     }
 
