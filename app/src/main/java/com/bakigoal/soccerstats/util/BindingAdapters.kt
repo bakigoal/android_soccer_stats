@@ -3,8 +3,8 @@ package com.bakigoal.soccerstats.util
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import coil.ImageLoader
 import coil.decode.SvgDecoder
+import coil.imageLoader
 import coil.request.ImageRequest
 import com.bakigoal.soccerstats.R
 import com.bumptech.glide.Glide
@@ -27,20 +27,22 @@ fun setImageUrl(imageView: ImageView, url: String) {
     Glide.with(imageView.context).load(url).into(imageView)
 }
 
-@BindingAdapter("loadUrl")
-fun ImageView.loadUrl(url: String) {
-    val imageLoader = ImageLoader.Builder(this.context)
-        .componentRegistry { add(SvgDecoder(this@loadUrl.context)) }
-        .build()
+/**
+ * Binding adapter used to display SVG images from URL using Coil
+ */
+@BindingAdapter("imageSvgUrl")
+fun ImageView.setImageSvgUrl(url: String) {
+    val context = this.context
 
-    val request = ImageRequest.Builder(this.context)
-        .crossfade(true)
-        .crossfade(500)
-        .placeholder(R.drawable.loading_animation)
-        .error(R.drawable.ic_broken_image)
+    val imageRequest = ImageRequest.Builder(context)
         .data(url)
         .target(this)
+        .decoder(SvgDecoder(context))
+        .placeholder(R.drawable.loading_animation)
+        .error(R.drawable.ic_broken_image)
+        .crossfade(true)
+        .crossfade(500)
         .build()
 
-    imageLoader.enqueue(request)
+    context.imageLoader.enqueue(imageRequest)
 }

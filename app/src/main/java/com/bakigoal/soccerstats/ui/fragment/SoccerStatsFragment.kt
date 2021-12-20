@@ -1,8 +1,5 @@
 package com.bakigoal.soccerstats.ui.fragment
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +59,8 @@ class SoccerStatsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        soccerStatsAdapterAdapter = SoccerStatsAdapter(SoccerStatsAdapter.CountryClick { countryClicked(it) })
+        soccerStatsAdapterAdapter =
+            SoccerStatsAdapter(SoccerStatsAdapter.CountryClick { countryClicked(it) })
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -85,9 +83,20 @@ class SoccerStatsFragment : Fragment() {
                 soccerStatsAdapterAdapter.countries = videos
             }
         })
+
+        viewModel.showError.observe(viewLifecycleOwner, { errorText ->
+            if (errorText.isNotEmpty()) {
+                showSnackbarWithText("Error: $errorText")
+                viewModel.doneShowError()
+            }
+        })
     }
 
-    private fun countryClicked(it: Country) {
-        Snackbar.make(requireView(), "Selected: ${it.name}", Snackbar.LENGTH_LONG).show()
+    private fun countryClicked(country: Country) {
+        showSnackbarWithText("Selected: ${country.name}")
+    }
+
+    private fun showSnackbarWithText(text: String) {
+        Snackbar.make(requireView(), text, Snackbar.LENGTH_LONG).show()
     }
 }

@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 app:layout_constraintStart_toStartOf="@+id/left_well"
-                app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
+                app:layout_constraintTop_toBottomOf="@+id/country_flag"
                 app:srcCompat="@drawable/ic_play_circle_outline_black_48dp"
                 android:contentDescription="@string/image_content_description" />
 
@@ -66,7 +66,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/right_well"
                 app:layout_constraintStart_toEndOf="@+id/play_icon"
-                app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
+                app:layout_constraintTop_toBottomOf="@+id/country_flag"
                 tools:text="Video title" />
 
 
@@ -88,13 +88,13 @@
                 tools:text="this is a vedeo @android:string/fingerprint_icon_content_description" />
 
             <ImageView
-                android:id="@+id/video_thumbnail"
+                android:id="@+id/country_flag"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                app:loadUrl="@{country.flag}"
+                app:imageSvgUrl="@{country.flag}"
                 app:layout_constraintDimensionRatio="h,4:3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
