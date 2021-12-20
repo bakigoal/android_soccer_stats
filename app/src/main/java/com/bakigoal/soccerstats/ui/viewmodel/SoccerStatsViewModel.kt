@@ -3,7 +3,7 @@ package com.bakigoal.soccerstats.ui.viewmodel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.bakigoal.soccerstats.database.CountriesDatabase.Companion.getDatabase
+import com.bakigoal.soccerstats.database.SoccerDatabase.Companion.getDatabase
 import com.bakigoal.soccerstats.domain.Country
 import com.bakigoal.soccerstats.repository.LeaguesRepository
 import kotlinx.coroutines.CoroutineScope

@@ -8,15 +8,15 @@ import com.bakigoal.soccerstats.database.dao.LeaguesDao
 import com.bakigoal.soccerstats.database.entity.LeagueEntity
 
 @Database(entities = [LeagueEntity::class], version = 4)
-abstract class CountriesDatabase : RoomDatabase() {
+abstract class SoccerDatabase : RoomDatabase() {
     abstract val leaguesDao: LeaguesDao
 
     companion object {
 
         @Volatile
-        private lateinit var INSTANCE: CountriesDatabase
+        private lateinit var INSTANCE: SoccerDatabase
 
-        fun getDatabase(context: Context): CountriesDatabase {
+        fun getDatabase(context: Context): SoccerDatabase {
             if (::INSTANCE.isInitialized) {
                 return INSTANCE
             }
@@ -27,7 +27,7 @@ abstract class CountriesDatabase : RoomDatabase() {
         private fun initDb(context: Context) = synchronized(this) {
             if (!::INSTANCE.isInitialized) {
                 INSTANCE = Room.databaseBuilder(
-                    context.applicationContext, CountriesDatabase::class.java, "countries"
+                    context.applicationContext, SoccerDatabase::class.java, "countries"
                 )
                     .fallbackToDestructiveMigration()
                     .build()

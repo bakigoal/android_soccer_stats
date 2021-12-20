@@ -3,7 +3,7 @@ package com.bakigoal.soccerstats.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.bakigoal.soccerstats.database.CountriesDatabase
+import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.repository.LeaguesRepository
 import retrofit2.HttpException
 
@@ -14,7 +14,7 @@ class RefreshDataWork(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     }
 
     override suspend fun doWork(): Result {
-        val database = CountriesDatabase.getDatabase(applicationContext)
+        val database = SoccerDatabase.getDatabase(applicationContext)
         val repository = LeaguesRepository(database)
 
         return try {

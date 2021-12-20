@@ -2,7 +2,7 @@ package com.bakigoal.soccerstats.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.bakigoal.soccerstats.database.CountriesDatabase
+import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.database.entity.toDomainModel
 import com.bakigoal.soccerstats.domain.League
 import com.bakigoal.soccerstats.network.Network
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 /**
  * Repository for fetching countries from the network and storing them on disk
  */
-class LeaguesRepository(private val database: CountriesDatabase) {
+class LeaguesRepository(private val database: SoccerDatabase) {
 
     companion object {
         private const val RPL_ID = 237
