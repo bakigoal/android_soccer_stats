@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bakigoal.soccerstats.database.VideosDatabase.Companion.getDatabase
-import com.bakigoal.soccerstats.domain.Video
-import com.bakigoal.soccerstats.repository.VideosRepository
+import com.bakigoal.soccerstats.database.CountriesDatabase.Companion.getDatabase
+import com.bakigoal.soccerstats.domain.Country
+import com.bakigoal.soccerstats.repository.CountriesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -19,13 +19,13 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val database = getDatabase(application)
-    private val videosRepository = VideosRepository(database)
+    private val countriesRepository = CountriesRepository(database)
 
-    val playlist: LiveData<List<Video>> = videosRepository.videos
+    val countries: LiveData<List<Country>> = countriesRepository.countries
 
     init {
         viewModelScope.launch {
-            videosRepository.refreshVideos()
+            countriesRepository.refreshCountries()
         }
     }
 

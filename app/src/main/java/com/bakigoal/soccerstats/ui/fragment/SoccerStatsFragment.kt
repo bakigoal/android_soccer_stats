@@ -13,9 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentDevByteBinding
-import com.bakigoal.soccerstats.domain.Video
-import com.bakigoal.soccerstats.ui.adapter.SoccerStats
+import com.bakigoal.soccerstats.domain.Country
+import com.bakigoal.soccerstats.ui.adapter.SoccerStatsAdapter
 import com.bakigoal.soccerstats.ui.viewmodel.SoccerStatsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Show a list of DevBytes on screen.
@@ -35,7 +36,7 @@ class SoccerStatsFragment : Fragment() {
     /**
      * RecyclerView Adapter for converting a list of Video to cards.
      */
-    private lateinit var soccerStatsAdapter: SoccerStats
+    private lateinit var soccerStatsAdapterAdapter: SoccerStatsAdapter
 
     /**
      * Called to have the fragment instantiate its user interface view.
@@ -61,11 +62,11 @@ class SoccerStatsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        soccerStatsAdapter = SoccerStats(SoccerStats.VideoClick { openVideo(it) })
+        soccerStatsAdapterAdapter = SoccerStatsAdapter(SoccerStatsAdapter.CountryClick { countryClicked(it) })
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = soccerStatsAdapter
+            adapter = soccerStatsAdapterAdapter
         }
 
         return binding.root
@@ -79,35 +80,14 @@ class SoccerStatsFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.playlist.observe(viewLifecycleOwner, { videos ->
+        viewModel.countries.observe(viewLifecycleOwner, { videos ->
             videos?.apply {
-                soccerStatsAdapter.videos = videos
+                soccerStatsAdapterAdapter.countries = videos
             }
         })
     }
 
-    private fun openVideo(it: Video) {
-        // context is not around, we can safely discard this click since the Fragment is no
-        // longer on the screen
-        val packageManager = context?.packageManager ?: return
-
-        // Try to generate a direct intent to the YouTube app
-        var intent = Intent(Intent.ACTION_VIEW, it.youtubeLaunchUri)
-        // if YouTube app isn't found, use the web url
-        @SuppressLint("QueryPermissionsNeeded")
-        if (intent.resolveActivity(packageManager) == null) {
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.url))
-        }
-
-        startActivity(intent)
+    private fun countryClicked(it: Country) {
+        Snackbar.make(requireView(), "Selected: ${it.name}", Snackbar.LENGTH_LONG).show()
     }
-
-    /**
-     * Helper method to generate YouTube app links
-     */
-    private val Video.youtubeLaunchUri: Uri
-        get() {
-            val httpUri = Uri.parse(url)
-            return Uri.parse("vnd.youtube:" + httpUri.getQueryParameter("v"))
-        }
 }

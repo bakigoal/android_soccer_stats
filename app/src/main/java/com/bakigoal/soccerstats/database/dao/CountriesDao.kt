@@ -5,14 +5,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.bakigoal.soccerstats.database.entity.VideoEntity
+import com.bakigoal.soccerstats.database.entity.CountryEntity
 
 @Dao
-interface VideoDao {
+interface CountriesDao {
 
-    @Query("select * from db_video")
-    fun getVideos(): LiveData<List<VideoEntity>>
+    @Query("select * from db_country")
+    fun getAll(): LiveData<List<CountryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg videos: VideoEntity)
+    fun insertAll(vararg countries: CountryEntity)
 }
