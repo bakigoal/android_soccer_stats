@@ -15,6 +15,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object Network {
 
     private const val BASE_URL = "https://v3.football.api-sports.io/"
+    private const val API_HOST_HEADER = "x-rapidapi-host"
+    private const val API_KEY_HEADER = "x-rapidapi-key"
 
     /**
      * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
@@ -26,13 +28,11 @@ object Network {
 
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor {
-            val original = it.request()
-
-            val request = original.newBuilder()
-                .header("x-rapidapi-key", BuildConfig.API_SPORTS_KEY)
-                .header("x-rapidapi-host", BuildConfig.API_SPORTS_HOST)
+            val request = it.request()
+                .newBuilder()
+                .header(API_HOST_HEADER, BuildConfig.API_SPORTS_HOST)
+                .header(API_KEY_HEADER, BuildConfig.API_SPORTS_KEY)
                 .build()
-
             it.proceed(request)
         }
         .build()
