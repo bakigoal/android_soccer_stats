@@ -3,6 +3,7 @@ package com.bakigoal.soccerstats.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.bakigoal.soccerstats.database.SoccerDatabase
+import com.bakigoal.soccerstats.database.entity.LeagueEntity
 import com.bakigoal.soccerstats.database.entity.toDomainModel
 import com.bakigoal.soccerstats.domain.League
 import com.bakigoal.soccerstats.network.Network
@@ -29,12 +30,7 @@ class LeaguesRepository(private val database: SoccerDatabase) {
     }
 
     val leagues: LiveData<List<League>> =
-        Transformations.map(database.leaguesDao.getAll()) {
-            it.map{ leagueEntity ->
-                val domainModel = leagueEntity.toDomainModel()
-                domainModel
-            }
-        }
+        Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueEntity::toDomainModel) }
 
     suspend fun refreshLeagues() = withContext(Dispatchers.IO) {
         leagueList.forEach { leagueId -> refreshLeague(leagueId) }
