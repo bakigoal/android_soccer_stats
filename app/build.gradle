@@ -82,13 +82,10 @@ dependencies {
 
     // Glide for images
     implementation "com.github.bumptech.glide:glide:$version_glide"
-    implementation 'com.caverock:androidsvg:1.2.1'
-    implementation "com.github.bumptech.glide:annotations:$version_glide"
-    kapt "com.github.bumptech.glide:compiler:$version_glide"
 
-//    // Coil for SVG images (https://github.com/coil-kt/coil)
-//    implementation("io.coil-kt:coil:$version_coil")
-//    implementation("io.coil-kt:coil-svg:$version_coil")
+    // Coil for SVG images (https://github.com/coil-kt/coil)
+    implementation("io.coil-kt:coil:$version_coil")
+    implementation("io.coil-kt:coil-svg:$version_coil")
 
     // Room database
     implementation "androidx.room:room-runtime:$version_room"

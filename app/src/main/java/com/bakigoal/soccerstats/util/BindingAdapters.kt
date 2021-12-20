@@ -1,12 +1,13 @@
 package com.bakigoal.soccerstats.util
 
-import android.graphics.drawable.PictureDrawable
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bakigoal.soccerstats.config.svg.GlideApp
-import com.bakigoal.soccerstats.config.svg.SvgSoftwareLayerSetter
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
+import com.bakigoal.soccerstats.R
+import com.bumptech.glide.Glide
 
 
 /**
@@ -23,9 +24,23 @@ fun goneIfNotNull(view: View, it: Any?) {
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String) {
 
-    GlideApp.with(imageView.context)
-        .`as`(PictureDrawable::class.java)
-        .transition(withCrossFade())
-        .listener(SvgSoftwareLayerSetter())
-        .load(url).into(imageView)
+    Glide.with(imageView.context).load(url).into(imageView)
+}
+
+@BindingAdapter("loadUrl")
+fun ImageView.loadUrl(url: String) {
+    val imageLoader = ImageLoader.Builder(this.context)
+        .componentRegistry { add(SvgDecoder(this@loadUrl.context)) }
+        .build()
+
+    val request = ImageRequest.Builder(this.context)
+        .crossfade(true)
+        .crossfade(500)
+        .placeholder(R.drawable.loading_animation)
+        .error(R.drawable.ic_broken_image)
+        .data(url)
+        .target(this)
+        .build()
+
+    imageLoader.enqueue(request)
 }
