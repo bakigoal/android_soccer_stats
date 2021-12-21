@@ -55,6 +55,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$version_compat"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
     implementation "com.google.android.material:material:$version_material"
+    implementation "androidx.legacy:legacy-support-v4:$version_legacy_support"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"

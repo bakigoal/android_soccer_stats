@@ -11,7 +11,7 @@ import com.bakigoal.soccerstats.database.entity.SeasonEntity
 
 @Database(
     entities = [LeagueInfoEntity::class, CountryEntity::class, SeasonEntity::class],
-    version = 5
+    version = 6
 )
 abstract class SoccerDatabase : RoomDatabase() {
     abstract val leaguesDao: LeaguesDao
@@ -32,7 +32,7 @@ abstract class SoccerDatabase : RoomDatabase() {
         private fun initDb(context: Context) = synchronized(this) {
             if (!::INSTANCE.isInitialized) {
                 INSTANCE = Room.databaseBuilder(
-                    context.applicationContext, SoccerDatabase::class.java, "countries"
+                    context.applicationContext, SoccerDatabase::class.java, "soccer-stats"
                 )
                     .fallbackToDestructiveMigration()
                     .build()

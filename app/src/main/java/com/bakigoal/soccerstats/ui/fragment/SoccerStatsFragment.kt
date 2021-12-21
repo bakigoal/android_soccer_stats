@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
-import com.bakigoal.soccerstats.databinding.FragmentDevByteBinding
+import com.bakigoal.soccerstats.databinding.FragmentLeagueBinding
 import com.bakigoal.soccerstats.domain.Country
 import com.bakigoal.soccerstats.ui.adapter.SoccerStatsAdapter
 import com.bakigoal.soccerstats.ui.viewmodel.SoccerStatsViewModel
@@ -52,8 +52,8 @@ class SoccerStatsFragment : Fragment() {
      * @return Return the View for the fragment's UI.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, s: Bundle?): View {
-        val binding: FragmentDevByteBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_dev_byte, container, false
+        val binding: FragmentLeagueBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_league, container, false
         )
         // Set the lifecycleOwner so DataBinding can observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner

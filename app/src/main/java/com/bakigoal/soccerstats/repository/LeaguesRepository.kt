@@ -5,6 +5,7 @@ import androidx.lifecycle.Transformations
 import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.database.entity.LeagueDB
 import com.bakigoal.soccerstats.domain.League
+import com.bakigoal.soccerstats.domain.LeaguesEnum
 import com.bakigoal.soccerstats.mappers.asDomain
 import com.bakigoal.soccerstats.mappers.asEntity
 import com.bakigoal.soccerstats.network.dto.LeagueDto
@@ -17,7 +18,8 @@ import kotlinx.coroutines.withContext
  */
 class LeaguesRepository(
     private val soccerStatsService: SoccerStatsService,
-    private val database: SoccerDatabase) {
+    private val database: SoccerDatabase
+) {
 
     val leagues: LiveData<List<League>> =
         Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueDB::asDomain) }
@@ -27,24 +29,12 @@ class LeaguesRepository(
     }
 
     suspend fun refreshLeagues() = withContext(Dispatchers.IO) {
-        leagueList.forEach { leagueId -> refreshLeague(leagueId) }
+        LeaguesEnum.values().forEach { refreshLeague(it.id) }
     }
 
     private suspend fun refreshLeague(leagueId: Int) = withContext(Dispatchers.IO) {
         val responseDto = soccerStatsService.leaguesAsync(leagueId).await()
         val response: List<LeagueDto> = responseDto.response
         database.leaguesDao.insertAll(*response.asEntity())
-    }
-
-    companion object {
-        private const val RPL_ID = 237
-        private const val PREMIER_LEAGUE_ID = 39
-        private const val LA_LIGA_ID = 140
-        private const val BUNDESLIGA_ID = 78
-        private const val SERIE_A_ID = 135
-        private const val LEAGUE_1_ID = 61
-
-        val leagueList =
-            listOf(RPL_ID, PREMIER_LEAGUE_ID, LA_LIGA_ID, BUNDESLIGA_ID, SERIE_A_ID, LEAGUE_1_ID)
     }
 }
