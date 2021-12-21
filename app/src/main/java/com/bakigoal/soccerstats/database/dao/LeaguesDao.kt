@@ -1,18 +1,35 @@
 package com.bakigoal.soccerstats.database.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
+import com.bakigoal.soccerstats.database.entity.CountryEntity
+import com.bakigoal.soccerstats.database.entity.LeagueWithCountryAndSeasons
 import com.bakigoal.soccerstats.database.entity.LeagueEntity
+import com.bakigoal.soccerstats.database.entity.SeasonEntity
 
 @Dao
-interface LeaguesDao {
+abstract class LeaguesDao {
 
-    @Query("select * from db_league")
-    fun getAll(): LiveData<List<LeagueEntity>>
+    @Transaction
+    @Query("select * from leagues")
+    abstract fun getAll(): LiveData<List<LeagueWithCountryAndSeasons>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg leagues: LeagueEntity)
+    @Insert(onConflict = REPLACE)
+    abstract fun insert(leagueEntity: LeagueEntity)
+
+    @Insert(onConflict = REPLACE)
+    abstract fun insert(countryEntity: CountryEntity)
+
+    @Insert(onConflict = REPLACE)
+    abstract fun insert(seasonEntity: SeasonEntity)
+
+    @Transaction
+    open fun insertAll(vararg leagues: LeagueWithCountryAndSeasons){
+        leagues.forEach { league ->
+            insert(league.league)
+            insert(league.country)
+            league.seasons.forEach(this::insert)
+        }
+    }
 }

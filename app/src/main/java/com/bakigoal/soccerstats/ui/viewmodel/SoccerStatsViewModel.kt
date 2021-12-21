@@ -35,7 +35,7 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
                     leaguesRepository.refreshLeagues()
                 }
             } catch (error: Throwable) {
-                _showError.value = "No internet... $error"
+                _showError.value = "Error... ${error.message}"
                 Log.e(javaClass.simpleName, error.message.toString())
             }
         }

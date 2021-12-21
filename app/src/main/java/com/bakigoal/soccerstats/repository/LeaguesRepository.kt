@@ -3,12 +3,12 @@ package com.bakigoal.soccerstats.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.bakigoal.soccerstats.database.SoccerDatabase
-import com.bakigoal.soccerstats.database.entity.LeagueEntity
-import com.bakigoal.soccerstats.database.entity.toDomainModel
+import com.bakigoal.soccerstats.database.entity.LeagueWithCountryAndSeasons
 import com.bakigoal.soccerstats.domain.League
+import com.bakigoal.soccerstats.mappers.asDomain
+import com.bakigoal.soccerstats.mappers.asEntity
 import com.bakigoal.soccerstats.network.Network
 import com.bakigoal.soccerstats.network.dto.LeagueDto
-import com.bakigoal.soccerstats.network.dto.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -30,7 +30,7 @@ class LeaguesRepository(private val database: SoccerDatabase) {
     }
 
     val leagues: LiveData<List<League>> =
-        Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueEntity::toDomainModel) }
+        Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueWithCountryAndSeasons::asDomain) }
 
     suspend fun refreshLeagues() = withContext(Dispatchers.IO) {
         leagueList.forEach { leagueId -> refreshLeague(leagueId) }
@@ -39,6 +39,6 @@ class LeaguesRepository(private val database: SoccerDatabase) {
     private suspend fun refreshLeague(leagueId: Int) = withContext(Dispatchers.IO) {
         val responseDto = Network.soccerStatsService.leaguesAsync(leagueId).await()
         val response: List<LeagueDto> = responseDto.response
-        database.leaguesDao.insertAll(*response.toEntity())
+        database.leaguesDao.insertAll(*response.asEntity())
     }
 }
