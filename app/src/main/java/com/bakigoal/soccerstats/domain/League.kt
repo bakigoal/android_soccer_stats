@@ -6,6 +6,6 @@ data class League(
     val name: String,
     val type: String,
     val logo: String,
-    var country: Country? = null,
+    var country: Country,
     var seasons: List<Season> = ArrayList()
 )
