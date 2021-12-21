@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">Soccer Stats</string>
     <string name="image_content_description">Image</string>
+    <string name="leagues_menu_title">World Top 6 Leagues</string>
+    <string name="soccer">Soccer</string>
+    <string name="leagues">Leagues</string>
+    <string name="developer">Developer</string>
+    <string name="about_developer_text">Software Developer</string>
 </resources>

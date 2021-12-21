@@ -1,7 +1,6 @@
 package com.bakigoal.soccerstats.ui
 
 import android.os.Bundle
-import android.view.Menu.NONE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -9,14 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.bakigoal.soccerstats.R
-import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.databinding.ActivityLeagueViewerBinding
-import com.bakigoal.soccerstats.network.Network
-import com.bakigoal.soccerstats.repository.LeaguesRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 
 /**
  * This is a single activity application that uses the Navigation library. Content is displayed
@@ -26,11 +18,6 @@ class SoccerStatsActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var binding: ActivityLeagueViewerBinding
-
-    private val activityJob = SupervisorJob()
-    private val activityScope = CoroutineScope(activityJob + Dispatchers.Main)
-
-    private lateinit var leaguesRepository: LeaguesRepository
 
     /**
      * Called when the activity is starting.  This is where most initialization
@@ -52,29 +39,11 @@ class SoccerStatsActivity : AppCompatActivity() {
             }
         }
         NavigationUI.setupWithNavController(binding.navView, navController)
-
-        leaguesRepository =
-            LeaguesRepository(Network.soccerStatsService, SoccerDatabase.getDatabase(application))
-        setupDrawerMenuItems()
     }
 
-    private fun setupDrawerMenuItems() = activityScope.launch {
-        leaguesRepository.leagues.observe(this@SoccerStatsActivity, {
-            val menu = binding.navView.menu
-            menu.clear()
-            it.forEachIndexed { index, league ->
-                menu.add(NONE, league.id, index, league.name)
-            }
-        })
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.myNavHostFragment)
         return NavigationUI.navigateUp(navController, drawerLayout)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        activityJob.cancel()
     }
 }

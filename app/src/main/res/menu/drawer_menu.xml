@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/soccerFragment"
+        android:icon="@drawable/ic_baseline_sports_soccer_24"
+        android:title="@string/soccer" />
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_baseline_emoji_people_24"
+        android:title="@string/developer" />
 </menu>
