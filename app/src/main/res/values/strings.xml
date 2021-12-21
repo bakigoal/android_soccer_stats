@@ -6,5 +6,5 @@
     <string name="soccer">Soccer</string>
     <string name="leagues">Leagues</string>
     <string name="developer">Developer</string>
-    <string name="about_developer_text">Software Developer</string>
+    <string name="about_developer_text">Software Developer \n// TODO:complete about me fragment</string>
 </resources>

@@ -14,6 +14,6 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.bakigoal.soccerstats.ui.fragment.AboutFragment"
-        android:label="fragment_about"
+        android:label="@string/developer"
         tools:layout="@layout/fragment_about" />
 </navigation>
