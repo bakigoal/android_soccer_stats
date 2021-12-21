@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.work
+package com.bakigoal.soccerstats.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
@@ -8,7 +8,7 @@ import com.bakigoal.soccerstats.network.Network
 import com.bakigoal.soccerstats.repository.LeaguesRepository
 import retrofit2.HttpException
 
-class RefreshDataWork(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
+class RefreshDataWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
 
     companion object {
         const val WORK_NAME = "RefreshDataWorker"

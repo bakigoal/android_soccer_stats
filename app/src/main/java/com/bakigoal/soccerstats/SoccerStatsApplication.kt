@@ -3,7 +3,7 @@ package com.bakigoal.soccerstats
 import android.app.Application
 import android.os.Build
 import androidx.work.*
-import com.bakigoal.soccerstats.work.RefreshDataWork
+import com.bakigoal.soccerstats.worker.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,12 +45,12 @@ class SoccerStatsApplication : Application() {
             }
             .build()
 
-        val workRequest = PeriodicWorkRequestBuilder<RefreshDataWork>(1, TimeUnit.DAYS)
+        val workRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS)
             .setConstraints(workerConstraints)
             .build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
-            RefreshDataWork.WORK_NAME,
+            RefreshDataWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
             workRequest
         )
