@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.bakigoal.soccerstats.database.SoccerDatabase.Companion.getDatabase
 import com.bakigoal.soccerstats.domain.Country
+import com.bakigoal.soccerstats.network.Network
 import com.bakigoal.soccerstats.repository.LeaguesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,7 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val database = getDatabase(application)
-    private val leaguesRepository = LeaguesRepository(database)
+    private val leaguesRepository = LeaguesRepository(Network.soccerStatsService, database)
 
     private val _showError = MutableLiveData("")
 

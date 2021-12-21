@@ -9,13 +9,29 @@ import com.bakigoal.soccerstats.mappers.asDomain
 import com.bakigoal.soccerstats.mappers.asEntity
 import com.bakigoal.soccerstats.network.Network
 import com.bakigoal.soccerstats.network.dto.LeagueDto
+import com.bakigoal.soccerstats.network.service.SoccerStatsService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 /**
  * Repository for fetching countries from the network and storing them on disk
  */
-class LeaguesRepository(private val database: SoccerDatabase) {
+class LeaguesRepository(
+    private val soccerStatsService: SoccerStatsService,
+    private val database: SoccerDatabase) {
+
+    val leagues: LiveData<List<League>> =
+        Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueDB::asDomain) }
+
+    suspend fun refreshLeagues() = withContext(Dispatchers.IO) {
+        leagueList.forEach { leagueId -> refreshLeague(leagueId) }
+    }
+
+    private suspend fun refreshLeague(leagueId: Int) = withContext(Dispatchers.IO) {
+        val responseDto = soccerStatsService.leaguesAsync(leagueId).await()
+        val response: List<LeagueDto> = responseDto.response
+        database.leaguesDao.insertAll(*response.asEntity())
+    }
 
     companion object {
         private const val RPL_ID = 237
@@ -27,18 +43,5 @@ class LeaguesRepository(private val database: SoccerDatabase) {
 
         val leagueList =
             listOf(RPL_ID, PREMIER_LEAGUE_ID, LA_LIGA_ID, BUNDESLIGA_ID, SERIE_A_ID, LEAGUE_1_ID)
-    }
-
-    val leagues: LiveData<List<League>> =
-        Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueDB::asDomain) }
-
-    suspend fun refreshLeagues() = withContext(Dispatchers.IO) {
-        leagueList.forEach { leagueId -> refreshLeague(leagueId) }
-    }
-
-    private suspend fun refreshLeague(leagueId: Int) = withContext(Dispatchers.IO) {
-        val responseDto = Network.soccerStatsService.leaguesAsync(leagueId).await()
-        val response: List<LeagueDto> = responseDto.response
-        database.leaguesDao.insertAll(*response.asEntity())
     }
 }
