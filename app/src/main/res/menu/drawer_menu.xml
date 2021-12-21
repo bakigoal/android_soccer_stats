@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/soccerFragment"
-        android:icon="@drawable/ic_soccer_ball_fire_launcher_foreground"
+        android:icon="@drawable/ic_soccer_ball"
         android:title="@string/app_name" />
 
     <item
