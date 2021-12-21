@@ -1,8 +1,8 @@
 package com.bakigoal.soccerstats.mappers
 
 import com.bakigoal.soccerstats.database.entity.CountryEntity
-import com.bakigoal.soccerstats.database.entity.LeagueEntity
-import com.bakigoal.soccerstats.database.entity.LeagueWithCountryAndSeasons
+import com.bakigoal.soccerstats.database.entity.LeagueInfoEntity
+import com.bakigoal.soccerstats.database.entity.LeagueDB
 import com.bakigoal.soccerstats.database.entity.SeasonEntity
 import com.bakigoal.soccerstats.domain.Country
 import com.bakigoal.soccerstats.domain.League
@@ -12,16 +12,16 @@ import com.bakigoal.soccerstats.network.dto.LeagueDto
 import com.bakigoal.soccerstats.network.dto.LeagueInfoDto
 import com.bakigoal.soccerstats.network.dto.SeasonDto
 
-fun LeagueDto.asEntity(): LeagueWithCountryAndSeasons = LeagueWithCountryAndSeasons(
+fun LeagueDto.asEntity(): LeagueDB = LeagueDB(
     league = this.league.asEntity(),
     country = this.country.asEntity(this.league.id),
     seasons = this.seasons.asEntity(this.league.id)
 )
 
-fun List<LeagueDto>.asEntity(): Array<LeagueWithCountryAndSeasons> =
+fun List<LeagueDto>.asEntity(): Array<LeagueDB> =
     map { it.asEntity() }.toTypedArray()
 
-fun LeagueWithCountryAndSeasons.asDomain(): League = League(
+fun LeagueDB.asDomain(): League = League(
     id = this.league.id,
     name = this.league.name,
     type = this.league.type,
@@ -41,7 +41,7 @@ private fun SeasonDto.asEntity(leagueId: Int): SeasonEntity =
 private fun CountryDto.asEntity(leagueId: Int): CountryEntity =
     CountryEntity(name = name, code = code, flag = flag, leagueId = leagueId)
 
-private fun LeagueInfoDto.asEntity(): LeagueEntity = LeagueEntity(id, name, type, logo)
+private fun LeagueInfoDto.asEntity(): LeagueInfoEntity = LeagueInfoEntity(id, name, type, logo)
 
 // --- To Domain ---
 

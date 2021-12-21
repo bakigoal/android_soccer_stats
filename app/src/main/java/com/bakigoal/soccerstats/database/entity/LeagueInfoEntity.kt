@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 
 @Entity(tableName = "leagues")
-data class LeagueEntity(
+data class LeagueInfoEntity(
     @PrimaryKey
     val id: Int,
     val name: String,
@@ -14,10 +14,10 @@ data class LeagueEntity(
     val logo: String
 )
 
-data class LeagueWithCountryAndSeasons(
+data class LeagueDB(
 
     @Embedded
-    val league: LeagueEntity,
+    val league: LeagueInfoEntity,
 
     @Relation(parentColumn = "id", entityColumn = "leagueId")
     val country: CountryEntity,

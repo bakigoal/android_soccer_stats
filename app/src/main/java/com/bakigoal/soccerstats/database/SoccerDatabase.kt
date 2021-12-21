@@ -6,11 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.bakigoal.soccerstats.database.dao.LeaguesDao
 import com.bakigoal.soccerstats.database.entity.CountryEntity
-import com.bakigoal.soccerstats.database.entity.LeagueEntity
+import com.bakigoal.soccerstats.database.entity.LeagueInfoEntity
 import com.bakigoal.soccerstats.database.entity.SeasonEntity
 
 @Database(
-    entities = [LeagueEntity::class, CountryEntity::class, SeasonEntity::class],
+    entities = [LeagueInfoEntity::class, CountryEntity::class, SeasonEntity::class],
     version = 5
 )
 abstract class SoccerDatabase : RoomDatabase() {
