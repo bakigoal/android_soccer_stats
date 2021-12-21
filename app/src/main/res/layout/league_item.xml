@@ -60,7 +60,7 @@
             app:layout_constraintEnd_toStartOf="@+id/right_well"
             app:layout_constraintStart_toEndOf="@+id/league_icon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Video title" />
+            tools:text="Country" />
 
 
         <TextView
@@ -79,7 +79,7 @@
             app:layout_constraintEnd_toEndOf="@+id/right_well"
             app:layout_constraintStart_toEndOf="@+id/league_icon"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:text="Premier League" />
+            tools:text="League Name" />
 
         <View
             android:id="@+id/clickableOverlay"
