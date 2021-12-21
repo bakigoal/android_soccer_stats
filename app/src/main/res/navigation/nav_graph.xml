@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/soccerFragment"
-        android:name="com.bakigoal.soccerstats.ui.fragment.SoccerLeaguesFragment"
+        android:name="com.bakigoal.soccerstats.ui.leagues.SoccerLeaguesFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_soccer_leagues" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.bakigoal.soccerstats.ui.fragment.AboutFragment"
+        android:name="com.bakigoal.soccerstats.ui.about.AboutFragment"
         android:label="@string/developer"
         tools:layout="@layout/fragment_about" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.adapter
+package com.bakigoal.soccerstats.ui.leagues
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,8 +12,8 @@ import com.bakigoal.soccerstats.domain.League
 /**
  * RecyclerView Adapter for setting up data binding on the items in the list.
  */
-class SoccerStatsAdapter(private val callback: LeagueClick) :
-    RecyclerView.Adapter<SoccerStatsAdapter.CountryViewHolder>() {
+class SoccerLeaguesAdapter(private val callback: LeagueClick) :
+    RecyclerView.Adapter<SoccerLeaguesAdapter.CountryViewHolder>() {
 
     class LeagueClick(val apply: (League) -> Unit) {
         fun onClick(league: League) = apply(league)

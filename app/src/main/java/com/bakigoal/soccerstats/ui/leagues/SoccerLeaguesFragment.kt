@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.fragment
+package com.bakigoal.soccerstats.ui.leagues
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,18 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentSoccerLeaguesBinding
 import com.bakigoal.soccerstats.domain.League
-import com.bakigoal.soccerstats.ui.adapter.SoccerStatsAdapter
-import com.bakigoal.soccerstats.ui.viewmodel.SoccerStatsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SoccerLeaguesFragment : Fragment() {
 
-    private val viewModel: SoccerStatsViewModel by lazy {
+    private val viewModel: SoccerLeaguesViewModel by lazy {
         val app = requireActivity().application
-        ViewModelProvider(this, SoccerStatsViewModel.Factory(app))[SoccerStatsViewModel::class.java]
+        ViewModelProvider(this, SoccerLeaguesViewModel.Factory(app))[SoccerLeaguesViewModel::class.java]
     }
 
-    private lateinit var soccerStatsAdapter: SoccerStatsAdapter
+    private lateinit var soccerLeaguesAdapter: SoccerLeaguesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, s: Bundle?): View {
         val binding: FragmentSoccerLeaguesBinding = DataBindingUtil.inflate(
@@ -32,12 +30,12 @@ class SoccerLeaguesFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        soccerStatsAdapter =
-            SoccerStatsAdapter(SoccerStatsAdapter.LeagueClick { leagueClicked(it) })
+        soccerLeaguesAdapter =
+            SoccerLeaguesAdapter(SoccerLeaguesAdapter.LeagueClick { leagueClicked(it) })
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = soccerStatsAdapter
+            adapter = soccerLeaguesAdapter
         }
 
         return binding.root
@@ -46,7 +44,7 @@ class SoccerLeaguesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.leagues.observe(viewLifecycleOwner, {
-            it?.apply { soccerStatsAdapter.leagues = it }
+            it?.apply { soccerLeaguesAdapter.leagues = it }
         })
 
         viewModel.showError.observe(viewLifecycleOwner, { errorText ->

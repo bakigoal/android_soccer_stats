@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.viewmodel
+package com.bakigoal.soccerstats.ui.leagues
 
 import android.app.Application
 import android.util.Log
@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class SoccerStatsViewModel(application: Application) : AndroidViewModel(application) {
+class SoccerLeaguesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -59,9 +59,9 @@ class SoccerStatsViewModel(application: Application) : AndroidViewModel(applicat
      */
     class Factory(private val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(SoccerStatsViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(SoccerLeaguesViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return SoccerStatsViewModel(app) as T
+                return SoccerLeaguesViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

@@ -13,7 +13,7 @@
 
         <variable
             name="leagueCallback"
-            type="com.bakigoal.soccerstats.ui.adapter.SoccerStatsAdapter.LeagueClick" />
+            type="com.bakigoal.soccerstats.ui.leagues.SoccerLeaguesAdapter.LeagueClick" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

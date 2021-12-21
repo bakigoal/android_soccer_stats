@@ -3,13 +3,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment.SoccerLeaguesFragment">
+    tools:context=".ui.leagues.SoccerLeaguesFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.bakigoal.soccerstats.ui.viewmodel.SoccerStatsViewModel" />
+            type="com.bakigoal.soccerstats.ui.leagues.SoccerLeaguesViewModel" />
     </data>
 
     <FrameLayout

@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.fragment
+package com.bakigoal.soccerstats.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
