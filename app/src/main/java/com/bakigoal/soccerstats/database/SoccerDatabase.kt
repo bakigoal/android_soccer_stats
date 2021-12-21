@@ -11,7 +11,7 @@ import com.bakigoal.soccerstats.database.entity.SeasonEntity
 
 @Database(
     entities = [LeagueInfoEntity::class, CountryEntity::class, SeasonEntity::class],
-    version = 6
+    version = 7
 )
 abstract class SoccerDatabase : RoomDatabase() {
     abstract val leaguesDao: LeaguesDao

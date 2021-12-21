@@ -1,11 +1,9 @@
 package com.bakigoal.soccerstats.database.entity
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity(tableName = "seasons")
-data class SeasonEntity (
-    @PrimaryKey
+@Entity(tableName = "seasons", primaryKeys = ["leagueId", "year"])
+data class SeasonEntity(
     val year: String,
     val leagueId: Int,
     val start: String,
