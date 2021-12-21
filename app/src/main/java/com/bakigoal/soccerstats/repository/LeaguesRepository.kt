@@ -7,7 +7,6 @@ import com.bakigoal.soccerstats.database.entity.LeagueDB
 import com.bakigoal.soccerstats.domain.League
 import com.bakigoal.soccerstats.mappers.asDomain
 import com.bakigoal.soccerstats.mappers.asEntity
-import com.bakigoal.soccerstats.network.Network
 import com.bakigoal.soccerstats.network.dto.LeagueDto
 import com.bakigoal.soccerstats.network.service.SoccerStatsService
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +21,10 @@ class LeaguesRepository(
 
     val leagues: LiveData<List<League>> =
         Transformations.map(database.leaguesDao.getAll()) { it.map(LeagueDB::asDomain) }
+
+    suspend fun isLeaguesDbEmpty(): Boolean = withContext(Dispatchers.IO) {
+        database.leaguesDao.getCount() == 0
+    }
 
     suspend fun refreshLeagues() = withContext(Dispatchers.IO) {
         leagueList.forEach { leagueId -> refreshLeague(leagueId) }

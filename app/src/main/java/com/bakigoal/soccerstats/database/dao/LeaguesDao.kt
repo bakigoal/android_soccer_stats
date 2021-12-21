@@ -15,6 +15,9 @@ abstract class LeaguesDao {
     @Query("select * from leagues")
     abstract fun getAll(): LiveData<List<LeagueDB>>
 
+    @Query("select count(*) from leagues")
+    abstract fun getCount(): Int
+
     @Insert(onConflict = REPLACE)
     abstract fun insert(leagueEntity: LeagueInfoEntity)
 
