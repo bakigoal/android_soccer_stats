@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -16,102 +15,81 @@
             type="com.bakigoal.soccerstats.ui.leagues.SoccerLeaguesAdapter.LeagueClick" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_well"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="8dp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/left_well"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="8dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_well"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="8dp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/right_well"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="8dp" />
+        <ImageView
+            android:id="@+id/league_icon"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/image_content_description"
+            android:scaleType="centerCrop"
+            app:imageSvgUrl="@{league.country.flag}"
+            app:layout_constraintStart_toStartOf="@+id/left_well"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-            <ImageView
-                android:id="@+id/play_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                app:layout_constraintStart_toStartOf="@+id/left_well"
-                app:layout_constraintTop_toBottomOf="@+id/country_flag"
-                app:srcCompat="@drawable/ic_play_circle_outline_black_48dp"
-                android:contentDescription="@string/image_content_description" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:text="@{league.country.name}"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textColor="@color/text_black"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/right_well"
-                app:layout_constraintStart_toEndOf="@+id/play_icon"
-                app:layout_constraintTop_toBottomOf="@+id/country_flag"
-                tools:text="Video title" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{league.country.name}"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textColor="@color/text_light"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/right_well"
+            app:layout_constraintStart_toEndOf="@+id/league_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Video title" />
 
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="@{league.country.code}"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textColor="@color/text_light"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/right_well"
-                app:layout_constraintStart_toStartOf="@+id/left_well"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="this is a vedeo @android:string/fingerprint_icon_content_description" />
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{league.name}"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textColor="@color/text_light"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/league_icon"
+            app:layout_constraintEnd_toEndOf="@+id/right_well"
+            app:layout_constraintStart_toEndOf="@+id/league_icon"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="Premier League" />
 
-            <ImageView
-                android:id="@+id/country_flag"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="false"
-                android:cropToPadding="false"
-                android:scaleType="centerCrop"
-                app:imageSvgUrl="@{league.country.flag}"
-                app:layout_constraintDimensionRatio="h,4:3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic"
-                android:contentDescription="@string/image_content_description" />
-
-            <View
-                android:id="@+id/clickableOverlay"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="?attr/selectableItemBackground"
-                android:onClick="@{() -> leagueCallback.onClick(league)}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+        <View
+            android:id="@+id/clickableOverlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{() -> leagueCallback.onClick(league)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
