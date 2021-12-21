@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentSoccerLeaguesBinding
@@ -17,7 +18,10 @@ class SoccerLeaguesFragment : Fragment() {
 
     private val viewModel: SoccerLeaguesViewModel by lazy {
         val app = requireActivity().application
-        ViewModelProvider(this, SoccerLeaguesViewModel.Factory(app))[SoccerLeaguesViewModel::class.java]
+        ViewModelProvider(
+            this,
+            SoccerLeaguesViewModel.Factory(app)
+        )[SoccerLeaguesViewModel::class.java]
     }
 
     private lateinit var soccerLeaguesAdapter: SoccerLeaguesAdapter
@@ -56,7 +60,9 @@ class SoccerLeaguesFragment : Fragment() {
     }
 
     private fun leagueClicked(league: League) {
-        showSnackbarWithText("Selected: ${league.name}")
+        findNavController().navigate(
+            SoccerLeaguesFragmentDirections.actionSoccerFragmentToStandingsFragment(league)
+        )
     }
 
     private fun showSnackbarWithText(text: String) {

@@ -10,10 +10,23 @@
         android:id="@+id/soccerFragment"
         android:name="com.bakigoal.soccerstats.ui.leagues.SoccerLeaguesFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_soccer_leagues" />
+        tools:layout="@layout/fragment_soccer_leagues" >
+        <action
+            android:id="@+id/action_soccerFragment_to_standingsFragment"
+            app:destination="@id/standingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.bakigoal.soccerstats.ui.about.AboutFragment"
         android:label="@string/developer"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/standingsFragment"
+        android:name="com.bakigoal.soccerstats.ui.standings.StandingsFragment"
+        android:label="@string/standings"
+        tools:layout="@layout/fragment_standings" >
+        <argument
+            android:name="league"
+            app:argType="com.bakigoal.soccerstats.domain.League" />
+    </fragment>
 </navigation>
