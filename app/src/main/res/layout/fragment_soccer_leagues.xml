@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment.SoccerStatsFragment">
+    tools:context=".ui.fragment.SoccerLeaguesFragment">
 
     <data>
 
@@ -21,13 +21,13 @@
             android:id="@+id/loading_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:goneIfNotNull="@{viewModel.countries}"
+            app:goneIfNotNull="@{viewModel.leagues}"
             android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/country_item" />
+            tools:listitem="@layout/league_item" />
     </FrameLayout>
 </layout>

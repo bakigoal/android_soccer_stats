@@ -8,12 +8,12 @@
     <data>
 
         <variable
-            name="country"
-            type="com.bakigoal.soccerstats.domain.Country" />
+            name="league"
+            type="com.bakigoal.soccerstats.domain.League" />
 
         <variable
-            name="countryCallback"
-            type="com.bakigoal.soccerstats.ui.adapter.SoccerStatsAdapter.CountryClick" />
+            name="leagueCallback"
+            type="com.bakigoal.soccerstats.ui.adapter.SoccerStatsAdapter.LeagueClick" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                android:text="@{country.name}"
+                android:text="@{league.country.name}"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="@color/text_black"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{country.code}"
+                android:text="@{league.country.code}"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="@color/text_light"
@@ -94,7 +94,7 @@
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                app:imageSvgUrl="@{country.flag}"
+                app:imageSvgUrl="@{league.country.flag}"
                 app:layout_constraintDimensionRatio="h,4:3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="@{() -> countryCallback.onClick(country)}"
+                android:onClick="@{() -> leagueCallback.onClick(league)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
