@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsBinding
 import com.bakigoal.soccerstats.domain.Season
+import com.bakigoal.soccerstats.ui.adapters.StandingsPagerAdapter
 
 class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -38,7 +39,14 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         seasonSpinner = binding.seasonSpinner
 
+        setupPager()
+
         return binding.root
+    }
+
+    private fun setupPager() {
+        binding.viewpager.adapter = StandingsPagerAdapter(parentFragmentManager)
+        binding.standingsTabs.setupWithViewPager(binding.viewpager)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
