@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Standings(
-    val leagueId: String,
+    val leagueId: Int,
     val season: String,
     val standings: List<StandingTeam>
 ) : Parcelable

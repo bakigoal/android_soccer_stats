@@ -39,4 +39,12 @@
             android:name="seasonPosition"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/tableFragment"
+        android:name="com.bakigoal.soccerstats.ui.fragments.TableFragment"
+        android:label="TableFragment" >
+        <argument
+            android:name="standings"
+            app:argType="com.bakigoal.soccerstats.domain.Standings" />
+    </fragment>
 </navigation>

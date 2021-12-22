@@ -14,10 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsBinding
 import com.bakigoal.soccerstats.domain.Season
-import com.bakigoal.soccerstats.ui.adapters.StandingsPagerAdapter
 import com.bakigoal.soccerstats.ui.viewModels.StandingsViewModel
+import com.google.android.material.tabs.TabLayout
 
-class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLayout.OnTabSelectedListener {
 
     private lateinit var binding: FragmentStandingsBinding
     private lateinit var viewModel: StandingsViewModel
@@ -42,14 +42,14 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         seasonSpinner = binding.seasonSpinner
 
-        setupPager()
+        setupTabs()
 
         return binding.root
     }
 
-    private fun setupPager() {
-        binding.viewpager.adapter = StandingsPagerAdapter(parentFragmentManager, binding.league!!.id, binding.season!!.year)
-        binding.standingsTabs.setupWithViewPager(binding.viewpager)
+    private fun setupTabs() {
+        binding.standingsTabs.addOnTabSelectedListener(this)
+        selectStandingsTab()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,5 +89,39 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewModel.seasonSelected(position)
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        when (tab?.position) {
+            0 -> selectStandingsTab()
+            1 -> selectTopScorersTab()
+            2 -> selectTopAssistsTab()
+        }
+    }
+
+    private fun selectStandingsTab() {
+        val year = binding.league!!.sortedSeasons()[currentSeasonPosition].year
+        val tableFragment = TableFragment.newInstance(binding.league!!.id, year)
+        replaceTab(tableFragment)
+    }
+
+    private fun selectTopScorersTab() {
+        replaceTab(TopScorersFragment())
+    }
+
+    private fun selectTopAssistsTab() {
+        replaceTab(TopAssistsFragment())
+    }
+
+    private fun replaceTab(fragment: Fragment) {
+        childFragmentManager.beginTransaction()
+            .apply { replace(R.id.tabContainer, fragment) }
+            .commit()
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {
+    }
+
+    override fun onTabReselected(tab: TabLayout.Tab?) {
+    }
 
 }

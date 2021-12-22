@@ -16,6 +16,10 @@ const val LEAGUE_SEASON_SEPARATOR = "___"
 
 fun glueLeagueIdAndSeason(leagueId:Int, season: String)  = "${leagueId}$LEAGUE_SEASON_SEPARATOR${season}"
 
+fun parseGluedId(leagueSeasonId: String): Pair<Int, String> {
+    val array = leagueSeasonId.split(LEAGUE_SEASON_SEPARATOR)
+    return Pair(array[0].toInt(), array[1])
+}
 // dto -> entity
 
 fun LeagueStandingsDto.asEntity(): StandingsDB = StandingsDB(
@@ -56,8 +60,8 @@ private fun StandingStatsDto.asEntity() = StatsEmbedded(
 // entity -> domain
 
 fun StandingsDB.asDomain() = Standings(
-    leagueId = leagueInfo.leagueSeasonId.split(LEAGUE_SEASON_SEPARATOR)[0],
-    season = leagueInfo.leagueSeasonId.split(LEAGUE_SEASON_SEPARATOR)[1],
+    leagueId = parseGluedId(leagueInfo.leagueSeasonId).first,
+    season = parseGluedId(leagueInfo.leagueSeasonId).second,
     standings = standings.map { it.asDomain() }
 )
 

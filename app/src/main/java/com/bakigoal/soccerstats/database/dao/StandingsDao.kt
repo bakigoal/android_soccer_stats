@@ -27,5 +27,8 @@ abstract class StandingsDao {
         }
     }
 
+    @Transaction
+    @Query("select leagueSeasonId from standings")
+    abstract fun findAllIds(): List<String>
 
 }
