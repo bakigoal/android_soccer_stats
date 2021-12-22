@@ -10,4 +10,7 @@ data class Season(
     val start: String,
     val end: String,
     val current: Boolean,
-): Parcelable
+) : Parcelable {
+
+    fun seasonText(): String = "$year/${year.toInt() + 1}"
+}

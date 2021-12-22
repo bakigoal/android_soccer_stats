@@ -23,8 +23,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:background="@color/background_grey">
+        android:background="@color/background_grey"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,31 +37,32 @@
                 android:layout_marginStart="@dimen/horizontal_margin"
                 android:layout_marginTop="@dimen/vertical_margin"
                 android:layout_marginEnd="@dimen/horizontal_margin"
+                app:imageSvgUrl="@{league.country.flag}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:imageSvgUrl="@{league.country.flag}"
                 app:srcCompat="@mipmap/ic_avatar" />
 
             <TextView
                 android:id="@+id/countryText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                android:text="@{league.country.name}"
                 android:textAlignment="viewStart"
                 android:textAllCaps="true"
                 android:textColor="@color/text_light"
-                android:layout_marginStart="@dimen/horizontal_margin"
-                android:layout_marginEnd="@dimen/horizontal_margin"
-                app:layout_constraintStart_toEndOf="@id/countryImage"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/countryImage"
                 app:layout_constraintTop_toTopOf="@id/countryImage"
-                android:text="@{league.country.name}" />
+                tools:text="ENGLAND" />
 
             <View
                 android:id="@+id/divider1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
                 android:layout_marginTop="@dimen/vertical_margin"
+                android:background="?android:attr/listDivider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/countryImage"
                 tools:layout_editor_absoluteX="1dp" />
@@ -73,27 +74,39 @@
                 android:layout_marginStart="@dimen/horizontal_margin"
                 android:layout_marginTop="@dimen/vertical_margin"
                 android:layout_marginEnd="@dimen/horizontal_margin"
+                app:imageUrl="@{league.logo}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider1"
-                app:imageUrl="@{league.logo}"
                 app:srcCompat="@mipmap/ic_avatar" />
 
             <TextView
-                android:id="@+id/seasonText"
-                android:layout_width="0dp"
+                android:id="@+id/leagueName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:text="@{league.name}"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/text_light"
                 android:textStyle="bold"
-                android:layout_marginStart="@dimen/horizontal_margin"
-                android:layout_marginEnd="@dimen/horizontal_margin"
-                app:layout_constraintStart_toEndOf="@id/leagueImage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/leagueImage"
+                android:textSize="18sp"
+                android:textColor="@color/text_light"
                 app:layout_constraintBottom_toBottomOf="@id/leagueImage"
-                android:text="@{league.seasonText(season)}" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/leagueImage"
+                app:layout_constraintTop_toTopOf="@id/leagueImage"
+                tools:text="Premier League" />
 
+            <Spinner
+                android:id="@+id/seasonSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                app:layout_constraintBottom_toBottomOf="@id/leagueName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/leagueName"
+                app:layout_constraintTop_toTopOf="@id/leagueName" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
