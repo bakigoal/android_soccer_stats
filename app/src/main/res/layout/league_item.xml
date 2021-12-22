@@ -54,7 +54,7 @@
             android:layout_marginTop="16dp"
             android:text="@{league.country.name}"
             android:textAlignment="viewStart"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:textColor="@color/text_light"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/right_well"
@@ -80,6 +80,16 @@
             app:layout_constraintStart_toEndOf="@+id/league_icon"
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="League Name" />
+
+        <View
+            android:id="@+id/divider0"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/league_icon"
+            tools:layout_editor_absoluteX="1dp" />
 
         <View
             android:id="@+id/clickableOverlay"

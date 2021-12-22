@@ -31,5 +31,8 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <argument
+            android:name="season"
+            app:argType="com.bakigoal.soccerstats.domain.Season" />
     </fragment>
 </navigation>

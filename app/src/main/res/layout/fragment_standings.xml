@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.standings.StandingsFragment">
 
@@ -8,12 +9,94 @@
         <variable
             name="viewModel"
             type="com.bakigoal.soccerstats.ui.standings.StandingsViewModel" />
+
+        <variable
+            name="league"
+            type="com.bakigoal.soccerstats.domain.League" />
+
+        <variable
+            name="season"
+            type="com.bakigoal.soccerstats.domain.Season" />
+
     </data>
 
-    <TextView
-        android:id="@+id/standingText"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:fillViewport="true"
+        android:background="@color/background_grey">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/countryImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginTop="@dimen/vertical_margin"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageSvgUrl="@{league.country.flag}"
+                app:srcCompat="@mipmap/ic_avatar" />
+
+            <TextView
+                android:id="@+id/countryText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textColor="@color/text_light"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                app:layout_constraintStart_toEndOf="@id/countryImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/countryImage"
+                android:text="@{league.country.name}" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="@dimen/vertical_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/countryImage"
+                tools:layout_editor_absoluteX="1dp" />
+
+            <ImageView
+                android:id="@+id/leagueImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginTop="@dimen/vertical_margin"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                app:imageUrl="@{league.logo}"
+                app:srcCompat="@mipmap/ic_avatar" />
+
+            <TextView
+                android:id="@+id/seasonText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/text_light"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                app:layout_constraintStart_toEndOf="@id/leagueImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/leagueImage"
+                app:layout_constraintBottom_toBottomOf="@id/leagueImage"
+                android:text="@{league.seasonText(season)}" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>

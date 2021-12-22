@@ -25,8 +25,9 @@ class StandingsFragment : Fragment() {
         )
 
         val args = StandingsFragmentArgs.fromBundle(requireArguments())
-        val txt = args.league.toString()
-        binding.standingText.text = txt
+
+        binding.league = args.league
+        binding.season = args.season
 
         return binding.root
     }
