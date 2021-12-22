@@ -12,7 +12,7 @@
 
         <variable
             name="leagueCallback"
-            type="com.bakigoal.soccerstats.ui.leagues.SoccerLeaguesAdapter.LeagueClick" />
+            type="com.bakigoal.soccerstats.ui.adapters.SoccerLeaguesAdapter.LeagueClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

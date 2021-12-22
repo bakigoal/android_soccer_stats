@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.leagues
+package com.bakigoal.soccerstats.ui.viewModels
 
 import android.app.Application
 import android.util.Log

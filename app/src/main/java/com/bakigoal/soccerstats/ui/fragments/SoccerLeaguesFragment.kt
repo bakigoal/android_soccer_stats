@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.leagues
+package com.bakigoal.soccerstats.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentSoccerLeaguesBinding
 import com.bakigoal.soccerstats.domain.League
+import com.bakigoal.soccerstats.ui.adapters.SoccerLeaguesAdapter
+import com.bakigoal.soccerstats.ui.viewModels.SoccerLeaguesViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SoccerLeaguesFragment : Fragment() {

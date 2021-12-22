@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.leagues
+package com.bakigoal.soccerstats.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

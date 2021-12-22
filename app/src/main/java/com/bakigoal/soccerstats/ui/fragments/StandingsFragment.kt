@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.standings
+package com.bakigoal.soccerstats.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +15,7 @@ import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsBinding
 import com.bakigoal.soccerstats.domain.Season
 import com.bakigoal.soccerstats.ui.adapters.StandingsPagerAdapter
+import com.bakigoal.soccerstats.ui.viewModels.StandingsViewModel
 
 class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 

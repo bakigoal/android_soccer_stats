@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.standings
+package com.bakigoal.soccerstats.ui.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
