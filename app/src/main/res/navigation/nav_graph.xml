@@ -31,12 +31,12 @@
         <argument
             android:name="title"
             app:argType="string" />
-        <argument
-            android:name="season"
-            app:argType="com.bakigoal.soccerstats.domain.Season" />
         <action
             android:id="@+id/action_standingsFragment_self"
             app:destination="@id/standingsFragment"
             app:popUpTo="@id/soccerFragment" />
+        <argument
+            android:name="seasonPosition"
+            app:argType="integer" />
     </fragment>
 </navigation>
