@@ -11,11 +11,10 @@ data class LeagueStandingsDto(
 data class StandingsDto(
     val id: Int,
     val name: String,
-    val type: String,
     val logo: String,
     val flag: String,
     val season: String,
-    val standings: List<StandingDto>
+    val standings: List<List<StandingDto>>
 )
 
 data class StandingDto(

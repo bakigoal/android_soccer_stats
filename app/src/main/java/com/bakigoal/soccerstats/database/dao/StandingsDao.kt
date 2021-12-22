@@ -1,6 +1,5 @@
 package com.bakigoal.soccerstats.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.bakigoal.soccerstats.database.entity.StandingTeamEntity
 import com.bakigoal.soccerstats.database.entity.StandingsDB
@@ -12,10 +11,7 @@ abstract class StandingsDao {
 
     @Transaction
     @Query("select * from standings where leagueSeasonId=:leagueIdAndSeason limit 1")
-    abstract fun findById(leagueIdAndSeason: String): LiveData<StandingsDB?>
-
-    @Query("select count(*) from standings where leagueSeasonId=:leagueIdAndSeason")
-    abstract fun getCount(leagueIdAndSeason: String): Int
+    abstract fun findById(leagueIdAndSeason: String): StandingsDB?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(standingTeamEntity: StandingTeamEntity)

@@ -8,12 +8,12 @@ import com.bakigoal.soccerstats.ui.fragments.TopAssistsFragment
 import com.bakigoal.soccerstats.ui.fragments.TopScorersFragment
 import java.lang.IllegalArgumentException
 
-class StandingsPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
+class StandingsPagerAdapter(fm: FragmentManager, private val leagueId: Int, private val year: String) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int = 3
 
     override fun getItem(position: Int): Fragment {
-        return when(position) {
-            0 -> TableFragment()
+        return when (position) {
+            0 -> TableFragment.newInstance(leagueId, year)
             1 -> TopScorersFragment()
             2 -> TopAssistsFragment()
             else -> throw IllegalArgumentException("No tabs found with position: $position")
@@ -21,7 +21,7 @@ class StandingsPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return when(position) {
+        return when (position) {
             0 -> "Standings"
             1 -> "Top Scorers"
             2 -> "Top Assists"

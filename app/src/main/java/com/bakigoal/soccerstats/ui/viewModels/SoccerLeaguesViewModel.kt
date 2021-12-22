@@ -25,8 +25,6 @@ class SoccerLeaguesViewModel(application: Application) : AndroidViewModel(applic
 
     val leagues: LiveData<List<League>>
         get() = leaguesRepository.leagues
-    val countries: LiveData<List<Country>> =
-        Transformations.map(leagues) { list -> list.map { it.country }.toList() }
     val showError: LiveData<String>
         get() = _showError
 

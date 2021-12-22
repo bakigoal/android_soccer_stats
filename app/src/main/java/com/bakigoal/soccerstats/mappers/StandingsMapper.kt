@@ -20,13 +20,12 @@ fun glueLeagueIdAndSeason(leagueId:Int, season: String)  = "${leagueId}$LEAGUE_S
 
 fun LeagueStandingsDto.asEntity(): StandingsDB = StandingsDB(
     leagueInfo = league.asEntity(),
-    standings = league.standings.map { it.asEntity(glueLeagueIdAndSeason(league.id,league.season)) }
+    standings = league.standings[0].map { it.asEntity(glueLeagueIdAndSeason(league.id,league.season)) }
 )
 
 private fun StandingsDto.asEntity() = StandingsLeagueEntity(
     leagueSeasonId = glueLeagueIdAndSeason(id, season),
     leagueName = name,
-    leagueType = type,
     leagueLogo = logo,
     countryFlag = flag
 )

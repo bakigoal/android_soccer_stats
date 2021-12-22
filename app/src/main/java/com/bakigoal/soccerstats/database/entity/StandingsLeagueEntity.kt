@@ -10,7 +10,6 @@ data class StandingsLeagueEntity(
     @PrimaryKey
     val leagueSeasonId: String,
     val leagueName: String,
-    val leagueType: String,
     val leagueLogo: String,
     val countryFlag: String
 )

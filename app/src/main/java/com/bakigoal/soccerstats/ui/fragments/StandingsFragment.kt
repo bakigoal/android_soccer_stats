@@ -26,6 +26,8 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, s: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_standings, container, false)
+        // Set the lifecycleOwner so DataBinding can observe LiveData
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val (league, _, seasonPosition) = StandingsFragmentArgs.fromBundle(requireArguments())
 
@@ -46,7 +48,7 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setupPager() {
-        binding.viewpager.adapter = StandingsPagerAdapter(parentFragmentManager)
+        binding.viewpager.adapter = StandingsPagerAdapter(parentFragmentManager, binding.league!!.id, binding.season!!.year)
         binding.standingsTabs.setupWithViewPager(binding.viewpager)
     }
 
