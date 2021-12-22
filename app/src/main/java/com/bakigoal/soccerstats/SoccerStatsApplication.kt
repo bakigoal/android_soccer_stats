@@ -3,7 +3,8 @@ package com.bakigoal.soccerstats
 import android.app.Application
 import android.os.Build
 import androidx.work.*
-import com.bakigoal.soccerstats.worker.RefreshDataWorker
+import com.bakigoal.soccerstats.worker.RefreshLeaguesWorker
+import com.bakigoal.soccerstats.worker.RefreshStandingsWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,29 +31,42 @@ class SoccerStatsApplication : Application() {
     private fun delayedInit() {
         applicationScope.launch {
             setupRefreshDataWorker()
+            setupRefreshStandingsWorker()
         }
     }
 
     private fun setupRefreshDataWorker() {
-        val workerConstraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.UNMETERED)
-            .setRequiresBatteryNotLow(true)
-            .setRequiresCharging(true)
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    setRequiresDeviceIdle(true)
-                }
-            }
-            .build()
-
-        val workRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS)
-            .setConstraints(workerConstraints)
+        val leagueWorkRequest = PeriodicWorkRequestBuilder<RefreshLeaguesWorker>(1, TimeUnit.DAYS)
+            .setConstraints(workerConstraints())
             .build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
-            RefreshDataWorker.WORK_NAME,
+            RefreshLeaguesWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
-            workRequest
+            leagueWorkRequest
         )
     }
+
+    private fun setupRefreshStandingsWorker() {
+        val standingsWorkRequest = PeriodicWorkRequestBuilder<RefreshStandingsWorker>(12, TimeUnit.HOURS)
+            .setConstraints(workerConstraints())
+            .build()
+
+        WorkManager.getInstance().enqueueUniquePeriodicWork(
+            RefreshStandingsWorker.WORK_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            standingsWorkRequest
+        )
+    }
+
+    private fun workerConstraints() = Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.UNMETERED)
+        .setRequiresBatteryNotLow(true)
+        .setRequiresCharging(true)
+        .apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                setRequiresDeviceIdle(true)
+            }
+        }
+        .build()
 }

@@ -5,6 +5,7 @@ import com.bakigoal.soccerstats.domain.Standings
 import com.bakigoal.soccerstats.mappers.asDomain
 import com.bakigoal.soccerstats.mappers.asEntity
 import com.bakigoal.soccerstats.mappers.glueLeagueIdAndSeason
+import com.bakigoal.soccerstats.mappers.parseGluedId
 import com.bakigoal.soccerstats.network.dto.LeagueStandingsDto
 import com.bakigoal.soccerstats.network.service.SoccerStatsService
 import kotlinx.coroutines.Dispatchers
@@ -26,5 +27,11 @@ class StandingsRepository(
         val response: List<LeagueStandingsDto> = dto.response
         val entity = response[0].asEntity()
         database.standingsDao.insert(entity)
+    }
+
+    suspend fun refreshStandings() = withContext(Dispatchers.IO) {
+        database.standingsDao.findAllIds().map { parseGluedId(it) }.forEach {
+            refreshStanding(it.first, it.second)
+        }
     }
 }

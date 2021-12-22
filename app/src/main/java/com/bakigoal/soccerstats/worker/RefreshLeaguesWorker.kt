@@ -8,10 +8,10 @@ import com.bakigoal.soccerstats.network.Network
 import com.bakigoal.soccerstats.repository.LeaguesRepository
 import retrofit2.HttpException
 
-class RefreshDataWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
+class RefreshLeaguesWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
 
     companion object {
-        const val WORK_NAME = "RefreshDataWorker"
+        const val WORK_NAME = "RefreshLeaguesWorker"
     }
 
     override suspend fun doWork(): Result {

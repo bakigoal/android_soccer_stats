@@ -1,6 +1,7 @@
 package com.bakigoal.soccerstats.ui.viewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.domain.Standings
@@ -29,8 +30,12 @@ class TableViewModel(
 
     init {
         viewModelScope.launch {
-            standingsRepository.refreshStanding(leagueId, year)
             _standings.value = standingsRepository.getStandings(leagueId, year)
+            Log.i(javaClass.simpleName, "init... ${_standings.value}")
+            if(_standings.value == null) {
+                standingsRepository.refreshStanding(leagueId, year)
+                _standings.value = standingsRepository.getStandings(leagueId, year)
+            }
         }
     }
 
