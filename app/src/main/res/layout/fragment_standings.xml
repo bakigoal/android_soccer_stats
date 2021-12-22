@@ -141,14 +141,21 @@
         </com.google.android.material.tabs.TabLayout>
 
 
-        <FrameLayout
-            android:id="@+id/tabContainer"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fillViewport="true"
             android:paddingBottom="162dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/standingsTabs" />
+            app:layout_constraintTop_toBottomOf="@id/standingsTabs" >
+
+            <FrameLayout
+                android:id="@+id/tabContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
