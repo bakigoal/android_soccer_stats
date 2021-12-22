@@ -35,7 +35,7 @@
             app:layout_constraintGuide_end="8dp" />
 
         <ImageView
-            android:id="@+id/league_icon"
+            android:id="@+id/icon"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
@@ -58,7 +58,7 @@
             android:textColor="@color/text_light"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/right_well"
-            app:layout_constraintStart_toEndOf="@+id/league_icon"
+            app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Country" />
 
@@ -75,9 +75,9 @@
             android:textAllCaps="false"
             android:textColor="@color/text_light"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/league_icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
             app:layout_constraintEnd_toEndOf="@+id/right_well"
-            app:layout_constraintStart_toEndOf="@+id/league_icon"
+            app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="League Name" />
 
@@ -88,7 +88,7 @@
             android:background="?android:attr/listDivider"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/league_icon"
+            app:layout_constraintTop_toBottomOf="@+id/icon"
             tools:layout_editor_absoluteX="1dp" />
 
         <View

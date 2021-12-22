@@ -16,7 +16,12 @@ data class StandingTeam
     val all: Stats,
     val home: Stats,
     val away: Stats
-) : Parcelable
+) : Parcelable{
+    fun rankString():String = "$rank"
+    fun allPlayed():String = "${all.played}"
+    fun pointsString():String = "$points"
+    fun goalsAll():String = "${all.goalsFor}:${all.goalsAgainst}"
+}
 
 @Parcelize
 data class Stats(

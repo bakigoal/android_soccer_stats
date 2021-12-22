@@ -37,6 +37,7 @@
         <entry key="app/src/main/res/layout/standings_team_item.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/standings_top_assists_item.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/standings_top_scorers_item.xml" value="0.540625" />
+        <entry key="app/src/main/res/layout/team_item.xml" value="1.0" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.540625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.5567708333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.5567708333333333" />
