@@ -5,16 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.bakigoal.soccerstats.database.dao.LeaguesDao
-import com.bakigoal.soccerstats.database.entity.CountryEntity
-import com.bakigoal.soccerstats.database.entity.LeagueInfoEntity
-import com.bakigoal.soccerstats.database.entity.SeasonEntity
+import com.bakigoal.soccerstats.database.dao.StandingsDao
+import com.bakigoal.soccerstats.database.entity.*
 
 @Database(
-    entities = [LeagueInfoEntity::class, CountryEntity::class, SeasonEntity::class],
-    version = 7
+    entities = [
+        LeagueInfoEntity::class,
+        CountryEntity::class,
+        SeasonEntity::class,
+        StandingTeamEntity::class,
+        StandingsLeagueEntity::class
+    ],
+    version = 8
 )
 abstract class SoccerDatabase : RoomDatabase() {
     abstract val leaguesDao: LeaguesDao
+    abstract val standingsDao: StandingsDao
 
     companion object {
 
