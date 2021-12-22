@@ -32,6 +32,7 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginTop="@dimen/vertical_margin"
             android:layout_marginEnd="@dimen/horizontal_margin"
+            android:contentDescription="@string/image_content_description"
             app:imageSvgUrl="@{league.country.flag}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,6 +70,7 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginTop="@dimen/vertical_margin"
             android:layout_marginEnd="@dimen/horizontal_margin"
+            android:contentDescription="@string/image_content_description"
             app:imageUrl="@{league.logo}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider1"
@@ -116,24 +118,28 @@
             tools:layout_editor_absoluteX="1dp" />
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/standingsTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider2" >
+            app:layout_constraintTop_toBottomOf="@id/divider2">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/standings"/>
+                android:text="@string/standings" />
+
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_scorers"/>
+                android:text="@string/top_scorers" />
+
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_assists"/>
+                android:text="@string/top_assists" />
         </com.google.android.material.tabs.TabLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
