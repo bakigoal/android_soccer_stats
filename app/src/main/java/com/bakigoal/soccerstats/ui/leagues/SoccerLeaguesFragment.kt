@@ -61,7 +61,7 @@ class SoccerLeaguesFragment : Fragment() {
 
     private fun leagueClicked(league: League) {
         findNavController().navigate(
-            SoccerLeaguesFragmentDirections.actionSoccerFragmentToStandingsFragment(league)
+            SoccerLeaguesFragmentDirections.actionSoccerFragmentToStandingsFragment(league, league.name)
         )
     }
 

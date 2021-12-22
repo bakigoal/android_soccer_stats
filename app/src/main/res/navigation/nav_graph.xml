@@ -23,10 +23,13 @@
     <fragment
         android:id="@+id/standingsFragment"
         android:name="com.bakigoal.soccerstats.ui.standings.StandingsFragment"
-        android:label="@string/standings"
+        android:label="{title}"
         tools:layout="@layout/fragment_standings" >
         <argument
             android:name="league"
             app:argType="com.bakigoal.soccerstats.domain.League" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 </navigation>
