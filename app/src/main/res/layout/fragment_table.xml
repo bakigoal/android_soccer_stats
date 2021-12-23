@@ -35,7 +35,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
-                android:background="@color/background_table"
+                android:background="@color/background_gray_whisper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/team_item" />
