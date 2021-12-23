@@ -13,4 +13,6 @@
     <color name="colorLauncherBackground">#3DDC84</color>
     <color name="colorLauncherFire">#ff455a64</color>
     <color name="colorLauncherBall">#ff37474f</color>
+    <color name="divider">#ffe0e0e0</color>
+    <color name="divider_light">#ffeeeeee</color>
 </resources>
