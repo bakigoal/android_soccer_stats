@@ -68,8 +68,8 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
     private fun setupSpinner(seasonList: List<Season>) {
         val array = seasonList.map { it.seasonText() }.toTypedArray()
         val adapter: ArrayAdapter<String> =
-            ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, array)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            ArrayAdapter(requireActivity(), R.layout.season_spinner_item, array)
+        adapter.setDropDownViewResource(R.layout.season_spinner_dropdown_item)
         seasonSpinner.adapter = adapter
         seasonSpinner.setSelection(currentSeasonPosition)
         seasonSpinner.onItemSelectedListener = this
