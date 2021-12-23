@@ -24,107 +24,21 @@
             app:goneIfNotNull="@{viewModel.standings}"
             android:layout_gravity="center" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/tableHeader"
+            android:orientation="vertical"
             app:goneIfNull="@{viewModel.standings}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/left_well"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="8dp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/right_well"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="8dp" />
-
-            <TextView
-                android:id="@+id/textRank"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:gravity="center_horizontal"
-                android:text="@string/rowNumberTitle"
-                app:layout_constraintStart_toStartOf="@id/left_well"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:text="@string/teamTitle"
-                android:textAlignment="viewStart"
-                android:textColor="@color/text_light"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/right_well"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/textRank"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@id/divider0"
-                app:layout_constraintEnd_toEndOf="@id/right_well"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@id/title"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/games"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center_horizontal"
-                    android:text="@string/allTitle"/>
-
-                <TextView
-                    android:id="@+id/goals"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
-                    android:gravity="center_horizontal"
-                    android:text="@string/goalsTitle" />
-
-                <TextView
-                    android:id="@+id/points"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="@string/pointsTitle"/>
-            </LinearLayout>
-
-
-            <View
-                android:id="@+id/divider0"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="6dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textRank"
-                tools:layout_editor_absoluteX="1dp" />
+            <include layout="@layout/table_header"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/team_item"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider0"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                tools:listitem="@layout/team_item"/>
+        </LinearLayout>
     </FrameLayout>
 
 </layout>
