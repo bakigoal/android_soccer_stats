@@ -105,10 +105,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:minHeight="48sp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
-
-
 
         <View
             android:id="@+id/divider2"
@@ -140,9 +139,8 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_assists" />
+                android:text="@string/matches" />
         </com.google.android.material.tabs.TabLayout>
-
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

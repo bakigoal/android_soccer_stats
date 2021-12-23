@@ -109,7 +109,7 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
     }
 
     private fun selectTopAssistsTab() {
-        replaceTab(TopAssistsFragment())
+        replaceTab(MatchesFragment())
     }
 
     private fun replaceTab(fragment: Fragment) {
