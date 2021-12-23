@@ -11,6 +11,6 @@
     <color name="text_black">#ff222222</color>
 
     <color name="colorLauncherBackground">#3DDC84</color>
-    <color name="colorLauncherFire">#FF000000</color>
-    <color name="colorLauncherBall">#FF000000</color>
+    <color name="colorLauncherFire">#ff455a64</color>
+    <color name="colorLauncherBall">#ff37474f</color>
 </resources>
