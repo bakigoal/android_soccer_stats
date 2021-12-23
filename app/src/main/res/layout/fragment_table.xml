@@ -21,23 +21,24 @@
             android:id="@+id/loading_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:goneIfNotNull="@{viewModel.standings}"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            app:goneIfNotNull="@{viewModel.standings}" />
 
         <LinearLayout
             android:id="@+id/tableHeader"
-            android:orientation="vertical"
-            app:goneIfNull="@{viewModel.standings}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:goneIfNull="@{viewModel.standings}">
 
-            <include layout="@layout/table_header"/>
+            <include layout="@layout/table_header" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
+                android:background="@color/background_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/team_item"/>
+                tools:listitem="@layout/team_item" />
         </LinearLayout>
     </FrameLayout>
 
