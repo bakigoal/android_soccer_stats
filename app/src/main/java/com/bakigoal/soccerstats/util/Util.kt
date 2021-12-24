@@ -44,7 +44,6 @@ fun Standings.populateColors() {
 
 private fun getDescriptionColors(standings: List<StandingTeam>): Map<String, String> {
     val descList = standings.filter { it.description != null }
-        .toSortedSet(compareBy { it.rank })
         .map { it.description }
         .toList()
     val map = mutableMapOf<String, String>()

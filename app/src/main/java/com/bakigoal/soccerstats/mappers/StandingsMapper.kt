@@ -62,7 +62,7 @@ private fun StandingStatsDto.asEntity() = StatsEmbedded(
 fun StandingsDB.asDomain() = Standings(
     leagueId = parseGluedId(leagueInfo.leagueSeasonId).first,
     season = parseGluedId(leagueInfo.leagueSeasonId).second,
-    standings = standings.map { it.asDomain() }
+    standings = standings.map { it.asDomain() }.sortedWith(compareBy { it.rank })
 )
 
 private fun StandingTeamEntity.asDomain() = StandingTeam(
