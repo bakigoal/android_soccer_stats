@@ -7,14 +7,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.bakigoal.soccerstats.domain.League
 import com.bakigoal.soccerstats.domain.Season
 
-class StandingsViewModel(private val league: League, private val currentSeasonPosition: Int) : ViewModel(){
+class StandingsViewModel(private val league: League, private val currentSeasonPosition: Int) :
+    ViewModel() {
 
     private var _navigateToSeason = MutableLiveData<Int?>(null)
+    private var _tabPosition = MutableLiveData<Int>(0)
 
     val seasonList: LiveData<List<Season>>
         get() = MutableLiveData(league.sortedSeasons())
     val navigateToSeason: LiveData<Int?>
         get() = _navigateToSeason
+    val tabPosition: LiveData<Int>
+        get() = _tabPosition
 
     fun seasonSelected(position: Int) {
         if (currentSeasonPosition != position) {
@@ -24,6 +28,10 @@ class StandingsViewModel(private val league: League, private val currentSeasonPo
 
     fun doneNavigateToSeason() {
         _navigateToSeason.value = null
+    }
+
+    fun changeTab(tabPosition: Int) {
+        _tabPosition.value = tabPosition
     }
 
     /**

@@ -52,7 +52,6 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
 
     private fun setupTabs() {
         binding.standingsTabs.addOnTabSelectedListener(this)
-        selectStandingsTab()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +65,7 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
                 viewModel.doneNavigateToSeason()
             }
         })
+        viewModel.tabPosition.observe(viewLifecycleOwner, { changeTab(it) })
     }
 
     private fun setupSpinner(seasonList: List<Season>) {
@@ -94,11 +94,18 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
-        when (tab?.position) {
+        tab?.position?.let {
+            viewModel.changeTab(it)
+        }
+    }
+
+    private fun changeTab(tabPosition: Int) {
+        when (tabPosition) {
             0 -> selectStandingsTab()
             1 -> selectTopScorersTab()
             2 -> selectTopAssistsTab()
         }
+        binding.standingsTabs.selectTab(binding.standingsTabs.getTabAt(tabPosition))
     }
 
     private fun selectStandingsTab() {
