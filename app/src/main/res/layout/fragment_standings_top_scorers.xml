@@ -30,14 +30,14 @@
             android:orientation="vertical"
             app:goneIfNull="@{viewModel.players}">
 
-            <include layout="@layout/top_scorers_header" />
+            <include layout="@layout/top_players_table_header" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:background="@color/background_white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/top_scorers_player_item" />
+                tools:listitem="@layout/top_players_item" />
 
         </LinearLayout>
     </FrameLayout>

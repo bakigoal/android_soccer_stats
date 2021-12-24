@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsTopAssistsBinding
 import com.bakigoal.soccerstats.domain.PlayerInfo
-import com.bakigoal.soccerstats.ui.adapters.TopScorersAdapter
+import com.bakigoal.soccerstats.ui.adapters.TopPlayersAdapter
 import com.bakigoal.soccerstats.ui.viewModels.TopAssistsViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -32,7 +32,7 @@ class TopAssistsFragment : Fragment() {
     }
 
     private lateinit var viewModel: TopAssistsViewModel
-    private lateinit var tableAdapter: TopScorersAdapter
+    private lateinit var tableAdapter: TopPlayersAdapter
     private lateinit var binding: FragmentStandingsTopAssistsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, s: Bundle?): View {
@@ -47,7 +47,7 @@ class TopAssistsFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        tableAdapter = TopScorersAdapter(TopScorersAdapter.OnClick { teamClicked(it) })
+        tableAdapter = TopPlayersAdapter(TopPlayersAdapter.OnClick { teamClicked(it) })
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = tableAdapter
