@@ -19,7 +19,7 @@ data class StandingsDto(
 
 data class StandingDto(
     val rank: Int,
-    val team: StandingTeamDto,
+    val team: TeamDto,
     val points: Int,
     val form: String,
     // Promotion - Champions League (Group Stage)
@@ -51,8 +51,3 @@ data class StandingGoalsDto(
     val goalsAgainst: Int
 )
 
-data class StandingTeamDto(
-    val id: Int,
-    val name: String,
-    val logo: String
-)

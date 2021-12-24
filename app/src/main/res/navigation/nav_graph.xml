@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/standingsFragment"
-        android:name="com.bakigoal.soccerstats.ui.fragments.StandingsFragment"
+        android:name="com.bakigoal.soccerstats.ui.fragments.standings.StandingsFragment"
         android:label="{title}"
         tools:layout="@layout/fragment_standings" >
         <argument

@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.fragments
+package com.bakigoal.soccerstats.ui.fragments.standings.tabs
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
-import com.bakigoal.soccerstats.databinding.FragmentTableBinding
+import com.bakigoal.soccerstats.databinding.FragmentStandingsTableBinding
 import com.bakigoal.soccerstats.domain.StandingTeam
 import com.bakigoal.soccerstats.ui.adapters.TableAdapter
 import com.bakigoal.soccerstats.ui.viewModels.TableViewModel
@@ -41,10 +41,10 @@ class TableFragment : Fragment() {
 
     private lateinit var viewModel: TableViewModel
     private lateinit var tableAdapter: TableAdapter
-    private lateinit var binding: FragmentTableBinding
+    private lateinit var binding: FragmentStandingsTableBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, s: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_table, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_standings_table, container, false)
         // Set the lifecycleOwner so DataBinding can observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
 
