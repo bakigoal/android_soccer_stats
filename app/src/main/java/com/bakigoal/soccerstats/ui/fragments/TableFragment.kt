@@ -19,6 +19,7 @@ import com.bakigoal.soccerstats.domain.StandingTeam
 import com.bakigoal.soccerstats.domain.Standings
 import com.bakigoal.soccerstats.ui.adapters.TableAdapter
 import com.bakigoal.soccerstats.ui.viewModels.TableViewModel
+import com.bakigoal.soccerstats.util.populateColors
 import com.google.android.material.snackbar.Snackbar
 
 private const val ARG_PARAM1 = "leagueId"
@@ -69,6 +70,7 @@ class TableFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.standings.observe(viewLifecycleOwner, {
             it?.apply {
+                it.populateColors()
                 tableAdapter.teams = it.standings
             }
         })

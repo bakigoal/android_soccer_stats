@@ -13,6 +13,7 @@ data class StandingTeam
     val teamName: String,
     val teamLogo: String,
     val description: String?,
+    var descriptionColor: String? = null,
     val all: Stats,
     val home: Stats,
     val away: Stats
