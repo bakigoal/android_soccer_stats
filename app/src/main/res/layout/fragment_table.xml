@@ -24,9 +24,10 @@
             app:goneIfNotNull="@{viewModel.standings}" />
 
         <LinearLayout
-            android:id="@+id/tableHeader"
+            android:id="@+id/table_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical"
             app:goneIfNull="@{viewModel.standings}">
 
@@ -38,6 +39,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/team_item" />
+
+
+
         </LinearLayout>
     </FrameLayout>
 
