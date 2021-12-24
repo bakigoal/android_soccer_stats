@@ -1,7 +1,7 @@
 package com.bakigoal.soccerstats.util
 
 import android.graphics.Color
-import android.util.Log
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -60,7 +60,9 @@ fun ImageView.setImageSvgUrl(url: String) {
 fun TextView.changeRankColors(descriptionColor: String?) {
     descriptionColor?.apply {
         val color = Color.parseColor(descriptionColor)
-        setBackgroundColor(color)
+        setBackgroundResource(R.drawable.rounder_corner_5)
+        val gradientDrawable = background as GradientDrawable
+        gradientDrawable.setColor(color)
         if (isColorDark(color)) setTextColor(Color.WHITE)
     }
 }

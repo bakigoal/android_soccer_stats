@@ -1,6 +1,7 @@
 package com.bakigoal.soccerstats.ui.fragments
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,9 +12,6 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.LinearLayout.HORIZONTAL
 import android.widget.TextView
-import androidx.core.view.marginTop
-import androidx.core.view.setMargins
-import androidx.core.view.setPadding
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -97,7 +95,9 @@ class TableFragment : Fragment() {
         layout.layoutParams = layoutParams
 
         val colorTextView = TextView(requireContext())
-        colorTextView.setBackgroundColor(Color.parseColor(team.descriptionColor))
+        colorTextView.setBackgroundResource(R.drawable.rounder_corner_2)
+        val gradientDrawable = colorTextView.background as GradientDrawable
+        gradientDrawable.setColor(Color.parseColor(team.descriptionColor))
         colorTextView.width = 24
         colorTextView.textSize = 6f
         val params = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)

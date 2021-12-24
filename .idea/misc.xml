@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/drawable/ic_soccer_ball_launcher_foreground.xml" value="0.5567708333333333" />
         <entry key="app/src/main/res/drawable/ic_soccer_field_empty.xml" value="0.5567708333333333" />
         <entry key="app/src/main/res/drawable/nav_header.xml" value="0.5567708333333333" />
+        <entry key="app/src/main/res/drawable/rounder_corner.xml" value="0.5567708333333333" />
+        <entry key="app/src/main/res/drawable/rounder_corner_1.xml" value="0.5567708333333333" />
         <entry key="app/src/main/res/layout/activity_dev_byte_viewer.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/activity_league_viewer.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/country_item.xml" value="0.540625" />
@@ -37,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_top_scorers.xml" value="0.32083333333333336" />
         <entry key="app/src/main/res/layout/league_item.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.540625" />
+        <entry key="app/src/main/res/layout/rounder_corner.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/season_spinner_dropdown_item.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/season_spinner_item.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/standings_team_item.xml" value="0.540625" />
