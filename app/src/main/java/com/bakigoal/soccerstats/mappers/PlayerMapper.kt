@@ -67,3 +67,9 @@ private fun BirthEntity.asDomain() = Birth(date, place, country)
 private fun PlayerStatsEntity.asDomain() = PlayerStats(
     id, year, leagueId, teamId, teamName, teamLogo, total, assists, saves
 )
+
+// dto -> domain
+
+fun List<PlayerInfoDto>.asDomain(): List<PlayerInfo> = map { it.asDomain() }
+
+private fun PlayerInfoDto.asDomain() = asEntity().asDomain()

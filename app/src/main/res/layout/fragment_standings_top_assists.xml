@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragments.standings.tabs.TopScorersFragment">
+    tools:context=".ui.fragments.standings.tabs.TopAssistsFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.bakigoal.soccerstats.ui.viewModels.TopScorersViewModel" />
+            type="com.bakigoal.soccerstats.ui.viewModels.TopAssistsViewModel" />
     </data>
 
     <FrameLayout

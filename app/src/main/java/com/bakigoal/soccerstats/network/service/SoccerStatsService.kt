@@ -21,4 +21,7 @@ interface SoccerStatsService {
 
     @GET("players/topscorers")
     fun topScorersAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
+
+    @GET("players/topassists")
+    fun topAssistsAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
 }

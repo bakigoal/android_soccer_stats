@@ -6,21 +6,21 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bakigoal.soccerstats.R
-import com.bakigoal.soccerstats.databinding.TopScorersPlayerItemBinding
+import com.bakigoal.soccerstats.databinding.TopPlayersItemBinding
 import com.bakigoal.soccerstats.domain.PlayerInfo
 
-class TopScorersAdapter(private val callback: OnClick) :
-    RecyclerView.Adapter<TopScorersAdapter.CountryViewHolder>() {
+class TopPlayersAdapter(private val callback: OnClick) :
+    RecyclerView.Adapter<TopPlayersAdapter.CountryViewHolder>() {
 
     class OnClick(val apply: (PlayerInfo) -> Unit) {
         fun onClick(playerInfo: PlayerInfo) = apply(playerInfo)
     }
 
-    class CountryViewHolder(val viewDataBinding: TopScorersPlayerItemBinding) :
+    class CountryViewHolder(val viewDataBinding: TopPlayersItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.top_scorers_player_item
+            val LAYOUT = R.layout.top_players_item
         }
     }
 
@@ -33,7 +33,7 @@ class TopScorersAdapter(private val callback: OnClick) :
     override fun getItemCount() = players.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
-        val itemBinding: TopScorersPlayerItemBinding = DataBindingUtil.inflate(
+        val itemBinding: TopPlayersItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             CountryViewHolder.LAYOUT,
             parent,

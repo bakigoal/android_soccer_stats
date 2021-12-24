@@ -26,6 +26,16 @@ fun goneIfNull(view: View, it: Any?) {
     view.visibility = if (it == null) View.GONE else View.VISIBLE
 }
 
+@BindingAdapter("goneIfNotEmpty")
+fun goneIfNotEmpty(view: View, it: List<Any>?) {
+    view.visibility = if (it != null && it.isNotEmpty()) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("goneIfEmpty")
+fun goneIfEmpty(view: View, it:  List<Any>?) {
+    view.visibility = if (it.isNullOrEmpty()) View.GONE else View.VISIBLE
+}
+
 /**
  * Binding adapter used to display images from URL using Glide
  */
