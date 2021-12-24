@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bakigoal.soccerstats.R
-import com.bakigoal.soccerstats.databinding.TeamItemBinding
+import com.bakigoal.soccerstats.databinding.TableTeamItemBinding
 import com.bakigoal.soccerstats.domain.StandingTeam
 
 class TableAdapter(private val callback: OnClick) :
@@ -16,11 +16,11 @@ class TableAdapter(private val callback: OnClick) :
         fun onClick(team: StandingTeam) = apply(team)
     }
 
-    class CountryViewHolder(val viewDataBinding: TeamItemBinding) :
+    class CountryViewHolder(val viewDataBinding: TableTeamItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.team_item
+            val LAYOUT = R.layout.table_team_item
         }
     }
 
@@ -35,7 +35,7 @@ class TableAdapter(private val callback: OnClick) :
     override fun getItemCount() = teams.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
-        val itemBinding: TeamItemBinding = DataBindingUtil.inflate(
+        val itemBinding: TableTeamItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             CountryViewHolder.LAYOUT,
             parent,

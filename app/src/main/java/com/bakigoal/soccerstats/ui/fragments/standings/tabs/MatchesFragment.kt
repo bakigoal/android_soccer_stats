@@ -1,4 +1,4 @@
-package com.bakigoal.soccerstats.ui.fragments
+package com.bakigoal.soccerstats.ui.fragments.standings.tabs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,7 +35,7 @@ class MatchesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matches, container, false)
+        return inflater.inflate(R.layout.fragment_standings_matches, container, false)
     }
 
     companion object {
