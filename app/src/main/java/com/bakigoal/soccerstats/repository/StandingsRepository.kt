@@ -25,8 +25,10 @@ class StandingsRepository(
     suspend fun refreshStanding(leagueId: Int, year: String) = withContext(Dispatchers.IO) {
         val dto = soccerStatsService.standingsAsync(leagueId, year).await()
         val response: List<LeagueStandingsDto> = dto.response
-        val entity = response[0].asEntity()
-        database.standingsDao.insert(entity)
+        if (response.isNotEmpty()) {
+            val entity = response[0].asEntity()
+            database.standingsDao.insert(entity)
+        }
     }
 
     suspend fun refreshStandings() = withContext(Dispatchers.IO) {
