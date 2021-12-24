@@ -108,7 +108,9 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
     }
 
     private fun selectTopScorersTab() {
-        replaceTab(TopScorersFragment())
+        val year = binding.league!!.sortedSeasons()[currentSeasonPosition].year
+        val tableFragment = TopScorersFragment.newInstance(binding.league!!.id, year)
+        replaceTab(tableFragment)
     }
 
     private fun selectTopAssistsTab() {

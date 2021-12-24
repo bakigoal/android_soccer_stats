@@ -15,4 +15,6 @@
     <string name="goalsTitle">Goals</string>
     <string name="pointsTitle">Points</string>
     <string name="matches">Matches</string>
+    <string name="playerTitle">Player</string>
+    <string name="assistsTitle">Assists</string>
 </resources>
