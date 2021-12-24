@@ -59,16 +59,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginEnd="8dp"
             android:gravity="center_horizontal"
             android:text="@string/goalsTitle"/>
+
+        <TextView
+            android:id="@+id/team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:gravity="center_horizontal"
+            android:text="@string/assistsTitle"/>
 
         <TextView
             android:id="@+id/assists"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/assistsTitle"/>
+            android:text="@string/teamTitle"/>
     </LinearLayout>
 
     <View

@@ -2,6 +2,7 @@ package com.bakigoal.soccerstats.network.service
 
 import com.bakigoal.soccerstats.network.dto.LeagueDto
 import com.bakigoal.soccerstats.network.dto.LeagueStandingsDto
+import com.bakigoal.soccerstats.network.dto.PlayerInfoDto
 import com.bakigoal.soccerstats.network.dto.ResponseDto
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
@@ -17,4 +18,7 @@ interface SoccerStatsService {
 
     @GET("standings")
     fun standingsAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<LeagueStandingsDto>>
+
+    @GET("players/topscorers")
+    fun topScorersAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
 }
