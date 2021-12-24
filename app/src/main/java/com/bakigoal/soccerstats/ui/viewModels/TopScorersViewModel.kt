@@ -1,12 +1,11 @@
 package com.bakigoal.soccerstats.ui.viewModels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.bakigoal.soccerstats.database.SoccerDatabase
-import com.bakigoal.soccerstats.domain.Standings
+import com.bakigoal.soccerstats.domain.PlayerInfo
 import com.bakigoal.soccerstats.network.Network
-import com.bakigoal.soccerstats.repository.StandingsRepository
+import com.bakigoal.soccerstats.repository.TopScorersRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -21,20 +20,19 @@ class TopScorersViewModel(
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val database = SoccerDatabase.getDatabase(application)
-    private val standingsRepository = StandingsRepository(Network.soccerStatsService, database)
+    private val topScorersRepository = TopScorersRepository(Network.soccerStatsService, database)
 
-    private val _standings = MutableLiveData<Standings?>(null)
+    private val _players = MutableLiveData<List<PlayerInfo>>(null)
 
-    val standings: LiveData<Standings?>
-        get() = _standings
+    val players: LiveData<List<PlayerInfo>>
+        get() = _players
 
     init {
         viewModelScope.launch {
-            _standings.value = standingsRepository.getStandings(leagueId, year)
-            Log.i(javaClass.simpleName, "init... ${_standings.value}")
-            if(_standings.value == null) {
-                standingsRepository.refreshStanding(leagueId, year)
-                _standings.value = standingsRepository.getStandings(leagueId, year)
+            _players.value = topScorersRepository.getTopScorers(leagueId, year)
+            if (_players.value == null || _players.value!!.isEmpty()) {
+                topScorersRepository.refreshTopScorers(leagueId, year)
+                _players.value = topScorersRepository.getTopScorers(leagueId, year)
             }
         }
     }

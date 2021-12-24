@@ -1,6 +1,7 @@
 package com.bakigoal.soccerstats.ui.fragments.standings.tabs
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsTopScorersBinding
-import com.bakigoal.soccerstats.domain.StandingTeam
-import com.bakigoal.soccerstats.ui.adapters.TableAdapter
+import com.bakigoal.soccerstats.domain.PlayerInfo
 import com.bakigoal.soccerstats.ui.adapters.TopScorersAdapter
 import com.bakigoal.soccerstats.ui.viewModels.TopScorersViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -58,15 +58,16 @@ class TopScorersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.standings.observe(viewLifecycleOwner, {
+        viewModel.players.observe(viewLifecycleOwner, {
             it?.apply {
-                tableAdapter.teams = it.standings
+                tableAdapter.players = it
+                Log.i("players","players: $it")
             }
         })
     }
 
-    private fun teamClicked(team: StandingTeam) {
-        Snackbar.make(requireView(), "Clicked ${team.teamName}", Snackbar.LENGTH_LONG).show()
+    private fun teamClicked(playerInfo: PlayerInfo) {
+        Snackbar.make(requireView(), "Clicked ${playerInfo.player.name}", Snackbar.LENGTH_LONG).show()
     }
 
     companion object {

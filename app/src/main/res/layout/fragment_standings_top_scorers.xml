@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:goneIfNotNull="@{viewModel.standings}" />
+            app:goneIfNotNull="@{viewModel.players}" />
 
         <LinearLayout
             android:id="@+id/table_container"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:orientation="vertical"
-            app:goneIfNull="@{viewModel.standings}">
+            app:goneIfNull="@{viewModel.players}">
 
             <include layout="@layout/top_scorers_header" />
 

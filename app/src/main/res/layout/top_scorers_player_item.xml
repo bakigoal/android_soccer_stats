@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="team"
-            type="com.bakigoal.soccerstats.domain.StandingTeam" />
+            name="playerInfo"
+            type="com.bakigoal.soccerstats.domain.PlayerInfo" />
 
         <variable
             name="callback"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:gravity="center_horizontal"
-            android:text="@{team.rankString}"
+            android:text="@{String.valueOf(playerInfo.scorerPosition)}"
             app:layout_constraintStart_toStartOf="@id/left_well"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
@@ -53,7 +53,7 @@
             android:layout_marginTop="6dp"
             android:contentDescription="@string/image_content_description"
             android:scaleType="centerCrop"
-            app:imageUrl="@{team.teamLogo}"
+            app:imageUrl="@{playerInfo.player.photo}"
             app:layout_constraintStart_toEndOf="@id/textRank"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
-            android:text="@{team.teamName}"
+            android:text="@{playerInfo.player.name}"
             android:textAlignment="viewStart"
             android:textColor="@color/text_light"
             android:textStyle="bold"
@@ -91,7 +91,7 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="18dp"
                 android:gravity="center_horizontal"
-                android:text="@{team.pointsString()}"
+                android:text="@{String.valueOf(playerInfo.playerStats.total)}"
                 tools:text="28" />
 
             <TextView
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:gravity="center_horizontal"
-                android:text="@{team.allPlayed}"
+                android:text="@{String.valueOf(playerInfo.playerStats.assists)}"
                 tools:text="12" />
 
             <ImageView
@@ -110,7 +110,7 @@
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/image_content_description"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{team.teamLogo}"
+                app:imageUrl="@{playerInfo.playerStats.teamLogo}"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
         </LinearLayout>
 
@@ -130,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="?attr/selectableItemBackground"
-            android:onClick="@{() -> callback.onClick(team)}"
+            android:onClick="@{() -> callback.onClick(playerInfo)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -31,7 +31,6 @@ class TableViewModel(
     init {
         viewModelScope.launch {
             _standings.value = standingsRepository.getStandings(leagueId, year)
-            Log.i(javaClass.simpleName, "init... ${_standings.value}")
             if(_standings.value == null) {
                 standingsRepository.refreshStanding(leagueId, year)
                 _standings.value = standingsRepository.getStandings(leagueId, year)

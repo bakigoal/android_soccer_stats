@@ -6,15 +6,14 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bakigoal.soccerstats.R
-import com.bakigoal.soccerstats.databinding.TableTeamItemBinding
 import com.bakigoal.soccerstats.databinding.TopScorersPlayerItemBinding
-import com.bakigoal.soccerstats.domain.StandingTeam
+import com.bakigoal.soccerstats.domain.PlayerInfo
 
 class TopScorersAdapter(private val callback: OnClick) :
     RecyclerView.Adapter<TopScorersAdapter.CountryViewHolder>() {
 
-    class OnClick(val apply: (StandingTeam) -> Unit) {
-        fun onClick(team: StandingTeam) = apply(team)
+    class OnClick(val apply: (PlayerInfo) -> Unit) {
+        fun onClick(playerInfo: PlayerInfo) = apply(playerInfo)
     }
 
     class CountryViewHolder(val viewDataBinding: TopScorersPlayerItemBinding) :
@@ -25,15 +24,13 @@ class TopScorersAdapter(private val callback: OnClick) :
         }
     }
 
-    var teams: List<StandingTeam?> = emptyList()
+    var players: List<PlayerInfo> = emptyList()
         set(value) {
-            field = sort(value)
+            field = value
             notifyDataSetChanged()
         }
 
-    private fun sort(list: List<StandingTeam?>) = list.sortedWith(compareBy { it?.rank })
-
-    override fun getItemCount() = teams.size
+    override fun getItemCount() = players.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val itemBinding: TopScorersPlayerItemBinding = DataBindingUtil.inflate(
@@ -47,7 +44,7 @@ class TopScorersAdapter(private val callback: OnClick) :
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.viewDataBinding.also {
-            it.team = teams[position]
+            it.playerInfo = players[position]
             it.callback = callback
         }
     }

@@ -20,4 +20,4 @@ data class StandingsDB(
 
     @Relation(parentColumn = "leagueSeasonId", entityColumn = "leagueSeasonId")
     val standings: List<StandingTeamEntity>
-    )
+)

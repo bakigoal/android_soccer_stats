@@ -1,15 +1,15 @@
-package com.bakigoal.soccerstats.network.dto
+package com.bakigoal.soccerstats.domain
 
-import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
-data class PlayerDto(
-    val id: Int,
+data class Player(
+    val id: String,
+    val playerId: Int,
+    val year: Int,
+    val leagueId: Int,
     val name: String,
     val firstname: String,
     val lastname: String,
     val age: Int,
-    val birth: BirthDto,
+    val birth: Birth,
     val nationality: String,
     val height: String?,
     val weight: String?,
@@ -17,7 +17,7 @@ data class PlayerDto(
     val photo: String
 )
 
-data class BirthDto(
+data class Birth(
     val date: String,
     val place: String?,
     val country: String?
