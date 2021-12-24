@@ -53,6 +53,7 @@
         <entry key="app/src/main/res/layout/table_header.xml" value="0.32447916666666665" />
         <entry key="app/src/main/res/layout/table_team_item.xml" value="0.32447916666666665" />
         <entry key="app/src/main/res/layout/team_item.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/top_assists_player_item.xml" value="0.540625" />
         <entry key="app/src/main/res/layout/top_scorers_header.xml" value="0.32447916666666665" />
         <entry key="app/src/main/res/layout/top_scorers_player_item.xml" value="0.32447916666666665" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.540625" />

@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsBinding
 import com.bakigoal.soccerstats.domain.Season
-import com.bakigoal.soccerstats.ui.fragments.standings.tabs.MatchesFragment
+import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TopAssistsFragment
 import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TableFragment
 import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TopScorersFragment
 import com.bakigoal.soccerstats.ui.viewModels.StandingsViewModel
@@ -121,7 +121,9 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
     }
 
     private fun selectTopAssistsTab() {
-        replaceTab(MatchesFragment())
+        val year = binding.league!!.sortedSeasons()[currentSeasonPosition].year
+        val tableFragment = TopAssistsFragment.newInstance(binding.league!!.id, year)
+        replaceTab(tableFragment)
     }
 
     private fun replaceTab(fragment: Fragment) {

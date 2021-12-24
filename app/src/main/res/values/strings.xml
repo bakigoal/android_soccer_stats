@@ -17,4 +17,5 @@
     <string name="matches">Matches</string>
     <string name="playerTitle">Player</string>
     <string name="assistsTitle">Assists</string>
+    <string name="top_assists">Top Assists</string>
 </resources>
