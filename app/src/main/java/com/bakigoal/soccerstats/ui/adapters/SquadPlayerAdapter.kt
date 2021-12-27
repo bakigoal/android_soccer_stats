@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.TableTeamPlayerItemBinding
 import com.bakigoal.soccerstats.domain.SquadPlayer
+import kotlin.math.max
 
 class SquadPlayerAdapter(private val callback: OnClick) :
     RecyclerView.Adapter<SquadPlayerAdapter.CountryViewHolder>() {
@@ -26,9 +27,34 @@ class SquadPlayerAdapter(private val callback: OnClick) :
 
     var players: List<SquadPlayer?> = emptyList()
         set(value) {
-            field = value
+            field = sort(value)
             notifyDataSetChanged()
         }
+
+    private fun sort(list: List<SquadPlayer?>): List<SquadPlayer?> {
+        val map = mutableMapOf<String, ArrayList<SquadPlayer>>()
+        list.forEach {
+            val key = it?.position ?: "-"
+            if (!map.containsKey(key)) {
+                map[key] = ArrayList()
+            }
+            map[key]?.add(it!!)
+        }
+
+        val result = ArrayList<SquadPlayer>()
+        map["Goalkeeper"]?.apply { result.addAll(this.toList()) }
+        map.remove("Goalkeeper")
+        map["Defender"]?.apply { result.addAll(this.toList()) }
+        map.remove("Defender")
+        map["Midfielder"]?.apply { result.addAll(this.toList()) }
+        map.remove("Midfielder")
+        map["Attacker"]?.apply { result.addAll(this.toList()) }
+        map.remove("Attacker")
+
+        map.values.forEach { result.addAll(it) }
+
+        return result
+    }
 
     override fun getItemCount() = players.size
 
