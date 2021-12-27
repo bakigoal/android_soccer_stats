@@ -12,6 +12,7 @@ data class PlayerEntity(
     val playerId: Int,
     val year: Int,
     val leagueId: Int,
+    val type: String,
     val name: String,
     val firstname: String,
     val lastname: String,

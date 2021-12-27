@@ -9,8 +9,12 @@ import com.bakigoal.soccerstats.database.entity.PlayerStatsEntity
 abstract class PlayersDao {
 
     @Transaction
-    @Query("select * from players where leagueId=:leagueId and year=:year")
+    @Query("select * from players where leagueId=:leagueId and year=:year and type='GOAL'")
     abstract fun getTopScorers(leagueId: Int, year: String): List<PlayerInfoDB>
+
+    @Transaction
+    @Query("select * from players where leagueId=:leagueId and year=:year and type=:type")
+    abstract fun getPlayersStatistics(leagueId: Int, year: String, type: String): List<PlayerInfoDB>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(playerEntity: PlayerEntity)

@@ -13,14 +13,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsBinding
+import com.bakigoal.soccerstats.domain.PlayerStatType
 import com.bakigoal.soccerstats.domain.Season
-import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TopAssistsFragment
 import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TableFragment
-import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TopScorersFragment
+import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TopPlayersFragment
 import com.bakigoal.soccerstats.ui.viewModels.StandingsViewModel
 import com.google.android.material.tabs.TabLayout
 
-class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLayout.OnTabSelectedListener {
+class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener,
+    TabLayout.OnTabSelectedListener {
 
     private lateinit var binding: FragmentStandingsBinding
     private lateinit var viewModel: StandingsViewModel
@@ -116,13 +117,15 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener, TabLay
 
     private fun selectTopScorersTab() {
         val year = binding.league!!.sortedSeasons()[currentSeasonPosition].year
-        val tableFragment = TopScorersFragment.newInstance(binding.league!!.id, year)
+        val tableFragment =
+            TopPlayersFragment.newInstance(binding.league!!.id, year, PlayerStatType.GOAL)
         replaceTab(tableFragment)
     }
 
     private fun selectTopAssistsTab() {
         val year = binding.league!!.sortedSeasons()[currentSeasonPosition].year
-        val tableFragment = TopAssistsFragment.newInstance(binding.league!!.id, year)
+        val tableFragment =
+            TopPlayersFragment.newInstance(binding.league!!.id, year, PlayerStatType.ASSIST)
         replaceTab(tableFragment)
     }
 

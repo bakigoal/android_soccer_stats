@@ -5,9 +5,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.network.Network
-import com.bakigoal.soccerstats.repository.LeaguesRepository
 import com.bakigoal.soccerstats.repository.StandingsRepository
-import com.bakigoal.soccerstats.repository.TopScorersRepository
+import com.bakigoal.soccerstats.repository.TopPlayersRepository
 import retrofit2.HttpException
 
 class RefreshStandingsWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
@@ -19,11 +18,11 @@ class RefreshStandingsWorker(ctx: Context, params: WorkerParameters) : Coroutine
     override suspend fun doWork(): Result {
         val database = SoccerDatabase.getDatabase(applicationContext)
         val repository = StandingsRepository(Network.soccerStatsService, database)
-        val scorersRepository = TopScorersRepository(Network.soccerStatsService, database)
+        val scorersRepository = TopPlayersRepository(Network.soccerStatsService, database)
 
         return try {
             repository.refreshStandings()
-            scorersRepository.refreshTopScorers()
+            scorersRepository.refreshTopScorersAndAssists()
             Result.success()
         } catch (e: HttpException) {
             // retry this Job in the future

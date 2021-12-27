@@ -19,7 +19,7 @@ import com.bakigoal.soccerstats.database.entity.*
         PlayerEntity::class,
         PlayerStatsEntity::class
     ],
-    version = 11
+    version = 12
 )
 abstract class SoccerDatabase : RoomDatabase() {
     abstract val leaguesDao: LeaguesDao

@@ -10,28 +10,31 @@ import com.bakigoal.soccerstats.domain.PlayerInfo
 import com.bakigoal.soccerstats.domain.PlayerStats
 import com.bakigoal.soccerstats.network.dto.*
 
-fun PlayerInfoDto.asEntity() = PlayerInfoDB(
-    player = player.asEntity(statistics[0].league),
-    statistics = statistics[0].asEntity(player.id)
+fun List<PlayerInfoDto>.asEntity(type:String) = map { it.asEntity(type) }.toTypedArray()
+
+fun PlayerInfoDto.asEntity(type: String) = PlayerInfoDB(
+    player = player.asEntity(statistics[0].league, type),
+    statistics = statistics[0].asEntity(player.id, type)
 )
 
-private fun PlayerStatsDto.asEntity(playerId: Int) = PlayerStatsEntity(
-    id = "${league.id}_${league.season}_$playerId",
+private fun PlayerStatsDto.asEntity(playerId: Int, type: String) = PlayerStatsEntity(
+    id = "${league.id}_${league.season}_${playerId}_$type",
     year = league.season,
     leagueId = league.id,
     teamId = team.id,
     teamName = team.name,
     teamLogo = team.logo,
-    total = goals.total?:0,
-    assists = goals.assists?:0,
-    saves = goals.saves?:0
+    total = goals.total ?: 0,
+    assists = goals.assists ?: 0,
+    saves = goals.saves ?: 0
 )
 
-private fun PlayerDto.asEntity(league: PlayerLeagueDto) = PlayerEntity(
-    id = "${league.id}_${league.season}_$id",
+private fun PlayerDto.asEntity(league: PlayerLeagueDto, type: String) = PlayerEntity(
+    id = "${league.id}_${league.season}_${id}_$type",
     playerId = id,
     year = league.season,
     leagueId = league.id,
+    type = type,
     name = name,
     firstname = firstname,
     lastname = lastname,
@@ -67,9 +70,3 @@ private fun BirthEntity.asDomain() = Birth(date, place, country)
 private fun PlayerStatsEntity.asDomain() = PlayerStats(
     id, year, leagueId, teamId, teamName, teamLogo, total, assists, saves
 )
-
-// dto -> domain
-
-fun List<PlayerInfoDto>.asDomain(): List<PlayerInfo> = map { it.asDomain() }
-
-private fun PlayerInfoDto.asDomain() = asEntity().asDomain()
