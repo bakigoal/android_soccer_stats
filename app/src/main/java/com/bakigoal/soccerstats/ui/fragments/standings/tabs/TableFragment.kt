@@ -15,11 +15,13 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsTableBinding
 import com.bakigoal.soccerstats.domain.StandingTeam
 import com.bakigoal.soccerstats.ui.adapters.TableAdapter
+import com.bakigoal.soccerstats.ui.fragments.standings.StandingsFragmentDirections
 import com.bakigoal.soccerstats.ui.viewModels.TableViewModel
 import com.bakigoal.soccerstats.util.populateColors
 import com.google.android.material.snackbar.Snackbar
@@ -44,7 +46,8 @@ class TableFragment : Fragment() {
     private lateinit var binding: FragmentStandingsTableBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, s: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_standings_table, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_standings_table, container, false)
         // Set the lifecycleOwner so DataBinding can observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -113,7 +116,9 @@ class TableFragment : Fragment() {
     }
 
     private fun teamClicked(team: StandingTeam) {
-        Snackbar.make(requireView(), "Clicked ${team.teamName}", Snackbar.LENGTH_LONG).show()
+        findNavController().navigate(
+            StandingsFragmentDirections.actionStandingsFragmentToTeamFragment(team, team.teamName)
+        )
     }
 
     companion object {

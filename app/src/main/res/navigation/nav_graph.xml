@@ -39,8 +39,25 @@
             android:name="seasonPosition"
             app:argType="integer" />
         <action
+            android:id="@+id/action_standingsFragment_to_teamFragment"
+            app:destination="@id/teamFragment" />
+        <action
             android:id="@+id/action_standingsFragment_to_playerFragment"
             app:destination="@id/playerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.bakigoal.soccerstats.ui.fragments.TeamFragment"
+        android:label="{title}" >
+        <action
+            android:id="@+id/action_teamFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+        <argument
+            android:name="team"
+            app:argType="com.bakigoal.soccerstats.domain.StandingTeam" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/playerFragment"
