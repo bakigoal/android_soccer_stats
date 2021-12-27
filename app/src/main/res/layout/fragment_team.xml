@@ -1,57 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="team"
-            type="com.bakigoal.soccerstats.domain.StandingTeam" />
+            name="viewModel"
+            type="com.bakigoal.soccerstats.ui.viewModels.TeamViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.fragments.TeamFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/teamLogo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="@dimen/horizontal_margin"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/horizontal_margin"
-            android:contentDescription="@string/image_content_description"
-            app:imageUrl="@{team.teamLogo}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_avatar" />
-        <LinearLayout
-            android:id="@+id/teamInfoLayout"
+        <ProgressBar
+            android:id="@+id/loading_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            app:layout_constraintStart_toEndOf="@+id/teamLogo"
-            app:layout_constraintTop_toTopOf="@+id/teamLogo">
+            android:layout_gravity="center"
+            app:goneIfNotNull="@{viewModel.squad}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:goneIfNull="@{viewModel.squad}"
+            tools:context=".ui.fragments.TeamFragment">
+
+            <ImageView
+                android:id="@+id/teamLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="@dimen/horizontal_margin"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/horizontal_margin"
+                android:contentDescription="@string/image_content_description"
+                app:imageUrl="@{viewModel.squad.team.logo}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/teamName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{team.teamName}"
-                android:textStyle="bold"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@{viewModel.squad.team.name}"
                 android:textSize="24sp"
-                tools:text="Manchester United" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/teamLogo"
+                app:layout_constraintStart_toEndOf="@+id/teamLogo"
+                app:layout_constraintTop_toTopOf="@+id/teamLogo"
+                tools:text="Manchester United"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <include
+                android:id="@+id/teamPlayersHeader"
+                layout="@layout/team_players_header"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{team.form}"
-                android:textAllCaps="true"
-                tools:text="DDWLW" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/teamLogo" />
 
-        </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_white"
+                tools:listitem="@layout/table_team_player_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/teamPlayersHeader" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

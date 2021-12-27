@@ -117,7 +117,7 @@ class TableFragment : Fragment() {
 
     private fun teamClicked(team: StandingTeam) {
         findNavController().navigate(
-            StandingsFragmentDirections.actionStandingsFragmentToTeamFragment(team, team.teamName)
+            StandingsFragmentDirections.actionStandingsFragmentToTeamFragment(team.teamId, team.teamName)
         )
     }
 

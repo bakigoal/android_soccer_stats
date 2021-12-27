@@ -53,8 +53,8 @@
             android:id="@+id/action_teamFragment_to_playerFragment"
             app:destination="@id/playerFragment" />
         <argument
-            android:name="team"
-            app:argType="com.bakigoal.soccerstats.domain.StandingTeam" />
+            android:name="teamId"
+            app:argType="integer" />
         <argument
             android:name="title"
             app:argType="string" />

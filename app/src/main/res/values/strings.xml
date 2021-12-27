@@ -24,4 +24,7 @@
     <string name="nationality_formatted">Nationality: %1$s</string>
     <string name="height_formatted">Height: %1$s</string>
     <string name="weight_formatted">Weight: %1$s</string>
+    <string name="nameTitle">Name</string>
+    <string name="positionTitle">Position</string>
+    <string name="ageTitle">Age</string>
 </resources>
