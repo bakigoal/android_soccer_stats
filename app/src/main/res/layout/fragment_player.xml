@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="playerInfo"
+            type="com.bakigoal.soccerstats.domain.PlayerInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_grey"
+        tools:context=".ui.fragments.PlayerFragment">
+
+        <ImageView
+            android:id="@+id/playerImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:contentDescription="@string/image_content_description"
+            app:imageUrl="@{playerInfo.player.photo}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_avatar" />
+
+        <LinearLayout
+            android:id="@+id/playerInfoLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintStart_toEndOf="@+id/playerImage"
+            app:layout_constraintTop_toTopOf="@+id/playerImage">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/full_name(playerInfo.player.firstname, playerInfo.player.lastname)}"
+                android:textStyle="bold"
+                tools:text="Mohammad Sallah" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{playerInfo.playerStats.teamName}"
+                android:textAllCaps="true"
+                tools:text="Liverpool" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/age_formatted(playerInfo.player.age, playerInfo.player.birth.date)}"
+                tools:text="Age: 29 (15.06.1992)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/nationality_formatted(playerInfo.player.nationality)}"
+                tools:text="Nationality: Egypt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/height_formatted(playerInfo.player.height)}"
+                tools:text="Height: 175" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/weight_formatted(playerInfo.player.weight)}"
+                tools:text="Weight: 65" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/teamImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:contentDescription="@string/image_content_description"
+            app:imageUrl="@{playerInfo.playerStats.teamLogo}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/playerInfoLayout"
+            app:layout_constraintTop_toTopOf="@+id/playerInfoLayout"
+            app:srcCompat="@mipmap/ic_avatar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bakigoal.soccerstats.R
 import com.bakigoal.soccerstats.databinding.FragmentStandingsTopPlayersBinding
 import com.bakigoal.soccerstats.domain.PlayerInfo
 import com.bakigoal.soccerstats.domain.PlayerStatType
 import com.bakigoal.soccerstats.ui.adapters.TopPlayersAdapter
+import com.bakigoal.soccerstats.ui.fragments.standings.StandingsFragmentDirections
 import com.bakigoal.soccerstats.ui.viewModels.TopPlayersViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -78,8 +80,12 @@ class TopPlayersFragment : Fragment() {
     }
 
     private fun teamClicked(playerInfo: PlayerInfo) {
-        Snackbar.make(requireView(), "Clicked ${playerInfo.player.name}", Snackbar.LENGTH_LONG)
-            .show()
+        findNavController().navigate(
+            StandingsFragmentDirections.actionStandingsFragmentToPlayerFragment(
+                playerInfo,
+                playerInfo.player.name
+            )
+        )
     }
 
     companion object {

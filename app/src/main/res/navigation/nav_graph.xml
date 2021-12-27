@@ -38,5 +38,19 @@
         <argument
             android:name="seasonPosition"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_standingsFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.bakigoal.soccerstats.ui.fragments.PlayerFragment"
+        android:label="{title}" >
+        <argument
+            android:name="playerInfo"
+            app:argType="com.bakigoal.soccerstats.domain.PlayerInfo" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 </navigation>

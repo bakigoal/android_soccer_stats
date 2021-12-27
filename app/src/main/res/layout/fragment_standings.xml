@@ -26,7 +26,7 @@
         android:background="@color/background_grey">
 
         <ImageView
-            android:id="@+id/countryImage"
+            android:id="@+id/playerImage"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginStart="@dimen/horizontal_margin"
@@ -50,8 +50,8 @@
             android:textSize="13sp"
             android:textColor="@color/text_light"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/countryImage"
-            app:layout_constraintTop_toTopOf="@id/countryImage"
+            app:layout_constraintStart_toEndOf="@id/playerImage"
+            app:layout_constraintTop_toTopOf="@id/playerImage"
             tools:text="ENGLAND" />
 
         <View
@@ -61,7 +61,7 @@
             android:layout_marginTop="4dp"
             android:background="@color/divider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/countryImage"
+            app:layout_constraintTop_toBottomOf="@+id/playerImage"
             tools:layout_editor_absoluteX="1dp" />
 
         <ImageView

@@ -1,5 +1,9 @@
 package com.bakigoal.soccerstats.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Player(
     val id: String,
     val playerId: Int,
@@ -15,10 +19,11 @@ data class Player(
     val weight: String?,
     val injured: Boolean? = false,
     val photo: String
-)
+) : Parcelable
 
+@Parcelize
 data class Birth(
     val date: String,
     val place: String?,
     val country: String?
-)
+) : Parcelable
