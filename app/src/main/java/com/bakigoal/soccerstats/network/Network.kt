@@ -14,7 +14,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 object Network {
 
-    private const val BASE_URL = "https://v3.football.api-sports.io/"
+    private const val BASE_URL = "https://bakigoal-soccer-api.herokuapp.com/"
     private const val API_HOST_HEADER = "x-rapidapi-host"
     private const val API_KEY_HEADER = "x-rapidapi-key"
 

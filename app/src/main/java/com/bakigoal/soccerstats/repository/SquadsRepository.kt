@@ -18,7 +18,7 @@ class SquadsRepository(
     }
 
     suspend fun refreshSquad(teamId: Int) = withContext(Dispatchers.IO) {
-        val response = soccerStatsService.getSquad(teamId).await().response
+        val response = soccerStatsService.getSquadAsync(teamId).await().response
         if (response.isNotEmpty()) {
             database.squadsDao.insertAll(response[0].asEntity())
         }

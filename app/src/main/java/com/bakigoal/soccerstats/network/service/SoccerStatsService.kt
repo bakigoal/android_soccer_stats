@@ -3,6 +3,7 @@ package com.bakigoal.soccerstats.network.service
 import com.bakigoal.soccerstats.network.dto.*
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -10,18 +11,18 @@ import retrofit2.http.Query
  */
 interface SoccerStatsService {
 
-    @GET("leagues")
-    fun leaguesAsync(@Query("id") id: Int): Deferred<ResponseDto<LeagueDto>>
+    @GET("/api/v1/leagues/{leagueId}")
+    fun leaguesAsync(@Path("leagueId") id: Int): Deferred<ResponseDto<LeagueDto>>
 
-    @GET("standings")
-    fun standingsAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<LeagueStandingsDto>>
+    @GET("/api/v1/leagues/{leagueId}/{season}/standings")
+    fun standingsAsync(@Path("leagueId") league: Int, @Path("season") year: String): Deferred<ResponseDto<LeagueStandingsDto>>
 
-    @GET("players/topscorers")
-    fun topScorersAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
+    @GET("/api/v1/leagues/{leagueId}/{season}/topscorers")
+    fun topScorersAsync(@Path("leagueId") league: Int, @Path("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
 
-    @GET("players/topassists")
-    fun topAssistsAsync(@Query("league") league: Int, @Query("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
+    @GET("/api/v1/leagues/{leagueId}/{season}/topassists")
+    fun topAssistsAsync(@Path("leagueId") league: Int, @Path("season") year: String): Deferred<ResponseDto<PlayerInfoDto>>
 
-    @GET("players/squads")
-    fun getSquad(@Query("team") teamId: Int): Deferred<ResponseDto<SquadDto>>
+    @GET("/api/v1/teams/{teamId}/squad")
+    fun getSquadAsync(@Path("teamId") teamId: Int): Deferred<ResponseDto<SquadDto>>
 }
