@@ -1,23 +1,16 @@
 <resources>
     <string name="app_name">Soccer Stats</string>
     <string name="image_content_description">Image</string>
-    <string name="leagues">Leagues</string>
     <string name="developer">Developer</string>
     <string name="about_developer_text">Software Developer \n// TODO:complete about me fragment</string>
-    <string name="leagues_menu_text">Leagues</string>
-    <string name="standings">Standings</string>
-    <string name="top_scorers">Top Scorers</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rowNumberTitle">#</string>
     <string name="teamTitle">Team</string>
     <string name="allTitle">All</string>
     <string name="goalsTitle">Goals</string>
     <string name="pointsTitle">Points</string>
-    <string name="matches">Matches</string>
     <string name="playerTitle">Player</string>
     <string name="assistsTitle">Assists</string>
-    <string name="top_assists">Top Assists</string>
 
     <string name="full_name">%1$s %2$s</string>
     <string name="age_formatted">Age: %1$s (%2$s)</string>
