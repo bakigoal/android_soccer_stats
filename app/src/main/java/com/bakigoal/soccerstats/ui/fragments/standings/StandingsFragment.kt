@@ -18,10 +18,10 @@ import com.bakigoal.soccerstats.domain.Season
 import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TableFragment
 import com.bakigoal.soccerstats.ui.fragments.standings.tabs.TopPlayersFragment
 import com.bakigoal.soccerstats.ui.viewModels.StandingsViewModel
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 
-class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener,
-    TabLayout.OnTabSelectedListener {
+class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: FragmentStandingsBinding
     private lateinit var viewModel: StandingsViewModel
@@ -52,7 +52,22 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener,
     }
 
     private fun setupTabs() {
-        binding.standingsTabs.addOnTabSelectedListener(this)
+        val chipGroup = binding.chipGroup
+        chipGroup.addView(createChip(chipGroup, StandingsChip.STANDINGS, true))
+        chipGroup.addView(createChip(chipGroup, StandingsChip.TOP_SCORERS))
+        chipGroup.addView(createChip(chipGroup, StandingsChip.TOP_ASSISTS))
+    }
+
+    private fun createChip(chipGroup: ChipGroup, standingsChip: StandingsChip, checked: Boolean = false): Chip {
+        val inflater = LayoutInflater.from(chipGroup.context)
+        val chip = inflater.inflate(R.layout.standings_chip, chipGroup, false) as Chip
+        chip.text = standingsChip.text
+        chip.tag = standingsChip.tag
+        chip.isChecked = checked
+        chip.setOnCheckedChangeListener { button, isChecked ->
+            viewModel.changeTab(button.tag as Int, isChecked)
+        }
+        return chip
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,19 +109,12 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener,
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-    override fun onTabSelected(tab: TabLayout.Tab?) {
-        tab?.position?.let {
-            viewModel.changeTab(it)
+    private fun changeTab(tag: Int) {
+        when (tag) {
+            StandingsChip.STANDINGS.tag -> selectStandingsTab()
+            StandingsChip.TOP_SCORERS.tag -> selectTopScorersTab()
+            StandingsChip.TOP_ASSISTS.tag -> selectTopAssistsTab()
         }
-    }
-
-    private fun changeTab(tabPosition: Int) {
-        when (tabPosition) {
-            0 -> selectStandingsTab()
-            1 -> selectTopScorersTab()
-            2 -> selectTopAssistsTab()
-        }
-        binding.standingsTabs.selectTab(binding.standingsTabs.getTabAt(tabPosition))
     }
 
     private fun selectStandingsTab() {
@@ -134,11 +142,10 @@ class StandingsFragment : Fragment(), AdapterView.OnItemSelectedListener,
             .apply { replace(R.id.tabContainer, fragment) }
             .commit()
     }
+}
 
-    override fun onTabUnselected(tab: TabLayout.Tab?) {
-    }
-
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-    }
-
+private enum class StandingsChip(val tag: Int, val text: String) {
+    STANDINGS(0, "Standings"),
+    TOP_SCORERS(1, "Top Scorers"),
+    TOP_ASSISTS(2, "Top Assists")
 }

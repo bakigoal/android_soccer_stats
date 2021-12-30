@@ -119,28 +119,21 @@
             app:layout_constraintTop_toBottomOf="@+id/leagueImage"
             tools:layout_editor_absoluteX="1dp" />
 
-        <com.google.android.material.tabs.TabLayout
+        <HorizontalScrollView
             android:id="@+id/standingsTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider2">
 
-            <com.google.android.material.tabs.TabItem
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/standings" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/top_scorers" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/top_assists" />
-        </com.google.android.material.tabs.TabLayout>
+                app:singleLine="true"
+                app:singleSelection="true"
+                />
+        </HorizontalScrollView>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

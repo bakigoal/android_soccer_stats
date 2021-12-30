@@ -30,8 +30,10 @@ class StandingsViewModel(private val league: League, private val currentSeasonPo
         _navigateToSeason.value = null
     }
 
-    fun changeTab(tabPosition: Int) {
-        _tabPosition.value = tabPosition
+    fun changeTab(tabPosition: Int, checked: Boolean) {
+        if (checked) {
+            _tabPosition.value = tabPosition
+        }
     }
 
     /**
