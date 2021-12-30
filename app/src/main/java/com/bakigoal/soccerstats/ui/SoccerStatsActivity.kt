@@ -27,8 +27,7 @@ class SoccerStatsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_league_viewer)
         drawerLayout = binding.drawerLayout
-        val navHost =
-            supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
         val navController = navHost.navController
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         navController.addOnDestinationChangedListener { controller, destination, _ ->
