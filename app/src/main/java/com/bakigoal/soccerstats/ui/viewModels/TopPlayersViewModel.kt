@@ -1,6 +1,7 @@
 package com.bakigoal.soccerstats.ui.viewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.domain.PlayerInfo
@@ -31,9 +32,11 @@ class TopPlayersViewModel(
 
     init {
         viewModelScope.launch {
-            _players.value = topPlayersRepository.getTopPlayers(leagueId, year, type)
-            if (_players.value == null || _players.value!!.isEmpty()) {
+            try {
                 topPlayersRepository.refreshTopPlayers(leagueId, year, type)
+            } catch (error: Throwable) {
+                Log.e(javaClass.simpleName, error.message.toString())
+            } finally {
                 _players.value = topPlayersRepository.getTopPlayers(leagueId, year, type)
             }
         }

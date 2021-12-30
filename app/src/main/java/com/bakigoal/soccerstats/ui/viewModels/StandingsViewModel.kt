@@ -11,7 +11,7 @@ class StandingsViewModel(private val league: League, private val currentSeasonPo
     ViewModel() {
 
     private var _navigateToSeason = MutableLiveData<Int?>(null)
-    private var _tabPosition = MutableLiveData<Int>(0)
+    private var _tabPosition = MutableLiveData(0)
 
     val seasonList: LiveData<List<Season>>
         get() = MutableLiveData(league.sortedSeasons())

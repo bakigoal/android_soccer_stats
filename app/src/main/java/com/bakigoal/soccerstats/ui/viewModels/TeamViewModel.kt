@@ -1,6 +1,7 @@
 package com.bakigoal.soccerstats.ui.viewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.bakigoal.soccerstats.database.SoccerDatabase
 import com.bakigoal.soccerstats.domain.Squad
@@ -24,9 +25,11 @@ class TeamViewModel(app: Application, private val teamId: Int) : AndroidViewMode
 
     init {
         viewModelScope.launch {
-            _squad.value = squadsRepository.getSquads(teamId)
-            if (_squad.value == null) {
+            try {
                 squadsRepository.refreshSquad(teamId)
+            } catch (error: Throwable) {
+                Log.e(javaClass.simpleName, error.message.toString())
+            } finally {
                 _squad.value = squadsRepository.getSquads(teamId)
             }
         }
