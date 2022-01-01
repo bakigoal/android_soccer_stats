@@ -14,7 +14,8 @@ import com.bakigoal.soccerstats.network.dto.StandingsDto
 
 const val LEAGUE_SEASON_SEPARATOR = "___"
 
-fun glueLeagueIdAndSeason(leagueId:Int, season: String)  = "${leagueId}$LEAGUE_SEASON_SEPARATOR${season}"
+fun glueLeagueIdAndSeason(leagueId: Int, season: String) =
+    "${leagueId}$LEAGUE_SEASON_SEPARATOR${season}"
 
 fun parseGluedId(leagueSeasonId: String): Pair<Int, String> {
     val array = leagueSeasonId.split(LEAGUE_SEASON_SEPARATOR)
@@ -24,7 +25,14 @@ fun parseGluedId(leagueSeasonId: String): Pair<Int, String> {
 
 fun LeagueStandingsDto.asEntity(): StandingsDB = StandingsDB(
     leagueInfo = league.asEntity(),
-    standings = league.standings[0].map { it.asEntity(glueLeagueIdAndSeason(league.id,league.season)) }
+    standings = league.standings[0].map {
+        it.asEntity(
+            glueLeagueIdAndSeason(
+                league.id,
+                league.season
+            )
+        )
+    }
 )
 
 private fun StandingsDto.asEntity() = StandingsLeagueEntity(
@@ -62,7 +70,7 @@ private fun StandingStatsDto.asEntity() = StatsEmbedded(
 fun StandingsDB.asDomain() = Standings(
     leagueId = parseGluedId(leagueInfo.leagueSeasonId).first,
     season = parseGluedId(leagueInfo.leagueSeasonId).second,
-    standings = standings.map { it.asDomain() }.sortedWith(compareBy { it.rank })
+    standings = standings.map { it.asDomain() }.sortedBy { it.rank }
 )
 
 private fun StandingTeamEntity.asDomain() = StandingTeam(

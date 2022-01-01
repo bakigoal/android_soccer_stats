@@ -16,7 +16,7 @@ data class League(
 ): Parcelable {
     fun currentSeason():Season = seasons.first { it.current }
 
-    fun sortedSeasons():List<Season> = seasons.sortedWith(compareByDescending { it.year })
+    fun sortedSeasons():List<Season> = seasons.sortedByDescending { it.year }
 
     fun seasonPosition(season: Season) = sortedSeasons().indexOf(season)
 }

@@ -30,7 +30,7 @@ class TableAdapter(private val callback: OnClick) :
             notifyDataSetChanged()
         }
 
-    private fun sort(list: List<StandingTeam?>) = list.sortedWith(compareBy { it?.rank })
+    private fun sort(list: List<StandingTeam?>) = list.sortedBy { it?.rank }
 
     override fun getItemCount() = teams.size
 
