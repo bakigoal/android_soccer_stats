@@ -23,7 +23,7 @@ class LeaguesRepository(
 
     val leagues: LiveData<List<League>> =
         Transformations.map(database.leaguesDao.getAll()) { list ->
-            list.map(LeagueDB::asDomain).sortedWith(compareBy { LeaguesEnum.fromId(it.id).order })
+            list.map(LeagueDB::asDomain).sortedBy { LeaguesEnum.fromId(it.id).order }
         }
 
     suspend fun isLeaguesDbEmpty(): Boolean = withContext(Dispatchers.IO) {
