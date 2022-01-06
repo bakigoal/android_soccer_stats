@@ -33,7 +33,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="@dimen/horizontal_margin"
             android:contentDescription="@string/image_content_description"
-            app:imageSvgUrl="@{league.country.flag}"
+            app:imageUrl="@{league.country.flag}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_avatar" />

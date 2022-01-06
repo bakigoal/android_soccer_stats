@@ -41,7 +41,7 @@
             android:layout_marginTop="20dp"
             android:contentDescription="@string/image_content_description"
             android:scaleType="centerCrop"
-            app:imageSvgUrl="@{league.country.flag}"
+            app:imageUrl="@{league.country.flag}"
             app:layout_constraintStart_toStartOf="@+id/left_well"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />

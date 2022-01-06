@@ -78,10 +78,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
-    // Glide for images
-    implementation "com.github.bumptech.glide:glide:$version_glide"
-
-    // Coil for SVG images (https://github.com/coil-kt/coil)
+    // Coil for images (https://github.com/coil-kt/coil)
     implementation("io.coil-kt:coil:$version_coil")
     implementation("io.coil-kt:coil-svg:$version_coil")
 

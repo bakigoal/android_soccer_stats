@@ -5,12 +5,13 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import coil.decode.SvgDecoder
 import coil.imageLoader
+import coil.load
 import coil.request.ImageRequest
 import com.bakigoal.soccerstats.R
-import com.bumptech.glide.Glide
 
 
 /**
@@ -32,7 +33,7 @@ fun goneIfNotEmpty(view: View, it: List<Any>?) {
 }
 
 @BindingAdapter("goneIfEmpty")
-fun goneIfEmpty(view: View, it:  List<Any>?) {
+fun goneIfEmpty(view: View, it: List<Any>?) {
     view.visibility = if (it.isNullOrEmpty()) View.GONE else View.VISIBLE
 }
 
@@ -41,21 +42,25 @@ fun goneIfEmpty(view: View, it:  List<Any>?) {
  */
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String?) {
-    url?.apply {
-        Glide.with(imageView.context).load(this).into(imageView)
+    url?.let {
+        if (url.endsWith("svg")) {
+            setImageSvgUrl(imageView, url)
+        } else {
+            val imgUri = it.toUri().buildUpon().scheme("https").build()
+            imageView.load(imgUri) {
+                placeholder(R.drawable.loading_animation)
+                error(R.drawable.ic_broken_image)
+            }
+        }
     }
 }
 
-/**
- * Binding adapter used to display SVG images from URL using Coil
- */
-@BindingAdapter("imageSvgUrl")
-fun ImageView.setImageSvgUrl(url: String) {
-    val context = this.context
+private fun setImageSvgUrl(imageView: ImageView, url: String) {
+    val context = imageView.context
 
     val imageRequest = ImageRequest.Builder(context)
         .data(url)
-        .target(this)
+        .target(imageView)
         .decoder(SvgDecoder(context))
         .placeholder(R.drawable.loading_animation)
         .error(R.drawable.ic_broken_image)
