@@ -5,11 +5,9 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import coil.decode.SvgDecoder
 import coil.imageLoader
-import coil.load
 import coil.request.ImageRequest
 import com.bakigoal.soccerstats.R
 
@@ -43,34 +41,23 @@ fun goneIfEmpty(view: View, it: List<Any>?) {
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String?) {
     url?.let {
-        if (url.endsWith("svg")) {
-            setImageSvgUrl(imageView, url)
-        } else {
-            val imgUri = it.toUri().buildUpon().scheme("https").build()
-            imageView.load(imgUri) {
-                placeholder(R.drawable.loading_animation)
-                error(R.drawable.ic_broken_image)
-            }
+        val context = imageView.context
+
+        val imageRequestBuilder = ImageRequest.Builder(context)
+            .data(url)
+            .target(imageView)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image)
+            .crossfade(true)
+            .crossfade(500)
+
+        if(url.endsWith("svg")){
+            imageRequestBuilder.decoder(SvgDecoder(context))
         }
+
+        context.imageLoader.enqueue(imageRequestBuilder.build())
     }
 }
-
-private fun setImageSvgUrl(imageView: ImageView, url: String) {
-    val context = imageView.context
-
-    val imageRequest = ImageRequest.Builder(context)
-        .data(url)
-        .target(imageView)
-        .decoder(SvgDecoder(context))
-        .placeholder(R.drawable.loading_animation)
-        .error(R.drawable.ic_broken_image)
-        .crossfade(true)
-        .crossfade(500)
-        .build()
-
-    context.imageLoader.enqueue(imageRequest)
-}
-
 
 @BindingAdapter("changeRankColors")
 fun TextView.changeRankColors(descriptionColor: String?) {
